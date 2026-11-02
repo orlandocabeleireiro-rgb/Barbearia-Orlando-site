@@ -38,7 +38,7 @@ export function Servicos() {
     <section id="servicos" ref={root} className="pad relative bg-abyss pb-[10vh] pt-[18vh]" aria-label="Serviços">
       <div className="mb-[8vh] flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <MaskLines as="h2" className="display text-[16vw] text-cream md:text-[9vw]" lines={['Serviços', <em className="font-normal italic text-brass">& preços</em>]} />
-        <p className="max-w-xs font-serif text-cream/70">Três rituais. Preço fechado, sem surpresas. Marcação online ou por telefone.</p>
+        <p className="max-w-xs font-serif text-cream/70">Três serviços. Preço fechado, sem surpresas. Marcação online ou por telefone.</p>
       </div>
 
       <ol>

@@ -28,7 +28,7 @@ export const SERVICES: Service[] = [
     name: 'Cabelo',
     minutes: 30,
     price: 15,
-    note: 'Máquina, tesoura e acabamento à navalha na nuca.',
+    note: 'Máquina e tesoura, com o melhor acabamento.',
     image: 'assets/trabalho.webp',
   },
   {
@@ -42,7 +42,7 @@ export const SERVICES: Service[] = [
     name: 'Cabelo e barba',
     minutes: 60,
     price: 20,
-    note: 'O ritual completo. Uma hora na cadeira.',
+    note: 'O serviço completo. Uma hora na cadeira.',
     image: 'assets/resultado.webp',
   },
 ]
