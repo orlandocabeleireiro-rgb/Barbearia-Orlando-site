@@ -7,7 +7,8 @@ export const SITE = {
   instagram: 'https://www.instagram.com/barbeariaorlando',
   instagramLabel: '@barbeariaorlando',
   address: ['Rua Álvaro de Castelões, 222', '4200-039 Porto'],
-  maps: 'https://www.google.com/maps/search/?api=1&query=Rua+%C3%81lvaro+de+Castel%C3%B5es+222+4200-039+Porto',
+  maps: 'https://maps.app.goo.gl/RzZxhcLZCaLCqFgd9',
+  mapEmbed: 'https://www.google.com/maps?q=Barbearia+Orlando,+Rua+%C3%81lvaro+de+Castel%C3%B5es+222,+4200-039+Porto&z=16&output=embed',
   hours: [
     { days: 'Segunda a sábado', time: '09:00–13:00 · 14:30–19:30' },
     { days: 'Domingo', time: 'Fechado' },
@@ -47,7 +48,7 @@ export const SERVICES: Service[] = [
 ]
 
 export const NAV = [
-  { label: 'Manifesto', href: '#manifesto' },
+  { label: 'Corte', href: '#corte' },
   { label: 'Serviços', href: '#servicos' },
   { label: 'Espaço', href: '#espaco' },
   { label: 'Marcar', href: '#marcar' },

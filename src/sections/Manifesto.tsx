@@ -47,7 +47,7 @@ export function Manifesto() {
   }, [])
 
   return (
-    <section id="manifesto" ref={root} className="relative" aria-label="Manifesto">
+    <section id="corte" ref={root} className="relative" aria-label="Corte">
       <div ref={stage} className="relative flex min-h-[100svh] items-center overflow-hidden bg-abyss">
         {!reduced && (
           <video
@@ -74,7 +74,7 @@ export function Manifesto() {
         />
 
         <div className="pad relative z-10 w-full py-24">
-          <span className="label text-brass">Manifesto · desde 2015</span>
+          <span className="label text-brass">Corte · desde 2015</span>
           <h2 className="display mt-6 text-[17vw] text-cream md:text-[10.5vw]">
             {WORDS.map((w, i) => (
               <span key={i} className="mf-word mr-[0.18em] inline-block">

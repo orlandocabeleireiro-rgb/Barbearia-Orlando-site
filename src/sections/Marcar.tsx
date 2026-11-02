@@ -4,6 +4,7 @@ import { gsap } from '../lib/gsap'
 import { SITE } from '../data/site'
 import { BookButton } from '../components/MagneticButton'
 import { chars } from '../lib/split'
+import { PinIcon } from '../components/Icons'
 
 const LINES = ['Senta-te', 'na cadeira.']
 
@@ -99,6 +100,26 @@ export function Marcar() {
             marcacoes.barbeariaorlando.pt ↗
           </a>
         </div>
+      </div>
+
+      <div className="relative mt-[10vh] overflow-hidden rounded-[24px] border border-brass/25">
+        <iframe
+          title="Mapa: Barbearia Orlando, Rua Álvaro de Castelões 222, Porto"
+          src={SITE.mapEmbed}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="block aspect-[4/5] w-full border-0 sm:aspect-[16/9] md:aspect-[21/9]"
+          style={{ filter: 'invert(90%) hue-rotate(180deg) saturate(.6) brightness(.95) contrast(.95)' }}
+        />
+        <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_80px_rgba(14,20,29,.9)]" />
+        <a
+          href={SITE.maps}
+          target="_blank"
+          rel="noopener"
+          className="label absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-barber px-5 py-3 text-cream shadow-[0_10px_30px_rgba(0,0,0,.5)] transition-colors hover:bg-[#bf3a34]"
+        >
+          <PinIcon className="h-4 w-4" /> Abrir no Google Maps ↗
+        </a>
       </div>
 
       <footer className="relative mt-[12vh] flex flex-col items-center gap-6 pb-24 md:flex-row md:justify-between md:pb-0">
