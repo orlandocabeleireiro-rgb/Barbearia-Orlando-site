@@ -35,7 +35,7 @@ export const SERVICES: Service[] = [
     name: 'Barba',
     minutes: 30,
     price: 10.5,
-    note: 'Toalha quente, desenho do contorno e navalha.',
+    note: 'Aparar, desenhar o contorno e acabar à navalha.',
     image: 'assets/barba.webp',
   },
   {
