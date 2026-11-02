@@ -22,9 +22,9 @@ export default function Menu({ open, go }: { open: boolean; go: (href: string) =
                   href={n.href}
                   onClick={(e) => (e.preventDefault(), go(n.href))}
                   className="display group flex items-baseline gap-4 text-[15vw] text-cream md:text-[9vw]"
-                  initial={{ y: '110%' }}
+                  initial={{ y: '135%' }}
                   animate={{ y: 0 }}
-                  exit={{ y: '110%' }}
+                  exit={{ y: '135%' }}
                   transition={{ duration: 0.9, ease, delay: 0.25 + i * 0.07 }}
                 >
                   <span className="label text-brass">0{i + 1}</span>

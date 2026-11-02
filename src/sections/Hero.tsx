@@ -55,8 +55,8 @@ export function Hero() {
     const el = root.current
     if (!el || reduced) return
     const ctx = gsap.context(() => {
-      gsap.set('.hero-char', { yPercent: 115, rotate: 6 })
-      gsap.set('.hero-sub', { yPercent: 120 })
+      gsap.set('.hero-char', { yPercent: 135, rotate: 6 })
+      gsap.set('.hero-sub', { yPercent: 140 })
       if (!ready) return
       const tl = gsap.timeline()
       tl.to('.hero-char', { yPercent: 0, rotate: 0, duration: 1.3, ease: 'expo.out', stagger: { each: 0.035, from: 'center' } })

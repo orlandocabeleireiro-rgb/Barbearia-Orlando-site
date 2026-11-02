@@ -31,7 +31,7 @@ export function Manifesto() {
     if (!el) return
     const ctx = gsap.context(() => {
       gsap.set('.mf-word', { opacity: 0.1, filter: 'blur(6px)' })
-      gsap.set('.mf-sign .mask > span', { yPercent: 110 })
+      gsap.set('.mf-sign .mask > span', { yPercent: 135 })
       gsap.set('.mf-rule', { scaleX: 0 })
       const tl = gsap.timeline({
         defaults: { ease: 'none' },
@@ -40,7 +40,7 @@ export function Manifesto() {
       tl.fromTo('.mf-word', { opacity: 0.1, filter: 'blur(6px)' }, { opacity: 1, filter: 'blur(0px)', stagger: 0.5, duration: 0.6 })
         .fromTo('.mf-forma', { color: '#EDE3CC' }, { color: '#A8322D', duration: 0.6 }, '-=0.4')
         .fromTo('.mf-rule', { scaleX: 0 }, { scaleX: 1, duration: 0.8 }, '-=0.2')
-        .fromTo('.mf-sign .mask > span', { yPercent: 110 }, { yPercent: 0, duration: 0.6, stagger: 0.1 }, '<')
+        .fromTo('.mf-sign .mask > span', { yPercent: 135 }, { yPercent: 0, duration: 0.6, stagger: 0.1 }, '<')
         .fromTo('.mf-video', { scale: 1.25 }, { scale: 1, duration: tl.duration(), ease: 'none' }, 0)
     }, el)
     return () => ctx.revert()

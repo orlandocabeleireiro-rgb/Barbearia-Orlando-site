@@ -40,7 +40,7 @@ body {
 @layer components {
   .label { @apply font-label uppercase tracking-label text-[11px] font-semibold; }
   .display { @apply font-display font-black leading-[0.86] tracking-tightest; }
-  .mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .mask { display: block; overflow: hidden; padding-bottom: 0.2em; margin-bottom: -0.2em; }
   .mask > * { display: block; will-change: transform; }
   .pad { padding-left: max(16px, 4vw); padding-right: max(16px, 4vw); }
 }

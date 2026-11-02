@@ -22,7 +22,7 @@ export function MaskLines({ lines, as: Tag = 'div', className, lineClassName, de
     const ctx = gsap.context(() => {
       gsap.fromTo(
         el.querySelectorAll('.mask > span'),
-        { yPercent: 110, rotate: 3 },
+        { yPercent: 135, rotate: 3 },
         { yPercent: 0, rotate: 0, duration: 1.15, ease: 'expo.out', stagger, delay, scrollTrigger: { trigger: el, start, once: true } },
       )
     }, el)

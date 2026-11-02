@@ -26,7 +26,7 @@ export function Nav() {
 
   return (
     <>
-      <header className="pad fixed inset-x-0 top-0 z-[80] flex items-center justify-between py-5">
+      <header className="pad fixed inset-x-0 top-0 z-[80] flex items-center justify-between bg-gradient-to-b from-abyss via-abyss/80 to-transparent pb-8 pt-5">
         <a href="#top" onClick={(e) => (e.preventDefault(), go('#top'))} className="flex items-center gap-3" aria-label="Barbearia Orlando — início">
           <img src="assets/logo-192.webp" alt="" width={40} height={40} className="h-10 w-10 rounded-full" />
           <span className="label hidden text-cream sm:inline">Barbearia Orlando</span>
