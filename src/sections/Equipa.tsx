@@ -157,7 +157,7 @@ function Scissors({ className }: { className?: string }) {
     </>
   )
   return (
-    <svg viewBox="-170 -110 380 220" className={className} overflow="visible">
+    <svg viewBox="-172 -172 384 344" className={className} overflow="visible">
       <g className="eq-blade-b">
         <g transform="scale(1,-1)">{half}</g>
       </g>
