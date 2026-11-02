@@ -1,31 +1,31 @@
 [
   {
-    "src": "/assets/espaco/cadeira.webp",
+    "src": "assets/espaco/cadeira.webp",
     "caption": "cadeira",
     "placeholder": true
   },
   {
-    "src": "/assets/espaco/balcao.webp",
+    "src": "assets/espaco/balcao.webp",
     "caption": "balcao",
     "placeholder": true
   },
   {
-    "src": "/assets/espaco/espelho.webp",
+    "src": "assets/espaco/espelho.webp",
     "caption": "espelho",
     "placeholder": true
   },
   {
-    "src": "/assets/espaco/ferramentas.webp",
+    "src": "assets/espaco/ferramentas.webp",
     "caption": "ferramentas",
     "placeholder": true
   },
   {
-    "src": "/assets/espaco/montra.webp",
+    "src": "assets/espaco/montra.webp",
     "caption": "montra",
     "placeholder": true
   },
   {
-    "src": "/assets/espaco/detalhe.webp",
+    "src": "assets/espaco/detalhe.webp",
     "caption": "detalhe",
     "placeholder": true
   }

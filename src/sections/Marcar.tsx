@@ -102,7 +102,7 @@ export function Marcar() {
       </div>
 
       <footer className="relative mt-[12vh] flex flex-col items-center gap-6 pb-24 md:flex-row md:justify-between md:pb-0">
-        <img src="/assets/logo-192.webp" alt="Barbearia Orlando, est. 2015" width={72} height={72} loading="lazy" className="h-[72px] w-[72px]" />
+        <img src="assets/logo-192.webp" alt="Barbearia Orlando, est. 2015" width={72} height={72} loading="lazy" className="h-[72px] w-[72px]" />
         <p className="label text-center text-cream/40">© {new Date().getFullYear()} Barbearia Orlando · Porto · Desde 2015</p>
       </footer>
     </section>

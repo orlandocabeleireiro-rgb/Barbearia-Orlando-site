@@ -52,6 +52,6 @@ for (const n of espaco) await out(`public/assets/espaco/${n}.webp`, frameSvg(110
 if (!existsSync('src/data/espaco.json')) {
   writeFileSync(
     'src/data/espaco.json',
-    JSON.stringify(espaco.map((n) => ({ src: `/assets/espaco/${n}.webp`, caption: n, placeholder: true })), null, 2),
+    JSON.stringify(espaco.map((n) => ({ src: `assets/espaco/${n}.webp`, caption: n, placeholder: true })), null, 2),
   )
 }

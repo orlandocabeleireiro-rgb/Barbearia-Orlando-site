@@ -48,7 +48,7 @@ cp o-teu-video.mp4 raw/corte.mp4
 npm run frames                       # 120 frames desktop (1600px) + 60 mobile (720px)
 npm run frames -- --desktop 150 --mobile 70   # opcional: outra quantidade
 ```
-Gera `public/sequences/corte/{desktop,mobile}/*.webp` + `manifest.json`. Enquanto não existir,
+Gera `public/sequences/corte/{desktop,mobile}/*.webp` e atualiza `manifest.json`. Enquanto o manifesto estiver vazio,
 a secção usa `trabalho` → `resultado` com wipe e zoom lento.
 Dica: 4–6 s de vídeo, câmara estável, 1080p. Vídeos brutos em `raw/` não vão para o git.
 

@@ -26,7 +26,7 @@ if (existsSync(esp)) {
   if (real.length) {
     const old = existsSync('src/data/espaco.json') ? JSON.parse(readFileSync('src/data/espaco.json', 'utf8')) : []
     const captions = Object.fromEntries(old.map((o) => [o.src, o.caption]))
-    const list = real.sort().map((n) => ({ src: `/assets/espaco/${n}.webp`, caption: captions[`/assets/espaco/${n}.webp`] ?? n.replace(/[-_]/g, ' ') }))
+    const list = real.sort().map((n) => ({ src: `assets/espaco/${n}.webp`, caption: captions[`assets/espaco/${n}.webp`] ?? n.replace(/[-_]/g, ' ') }))
     writeFileSync('src/data/espaco.json', JSON.stringify(list, null, 2))
     console.log('✓ manifest espaço:', list.length, 'fotos')
   }

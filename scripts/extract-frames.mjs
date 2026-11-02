@@ -47,7 +47,7 @@ for (const [name, t] of Object.entries(targets)) {
   const files = readdirSync(dir).filter((f) => f.endsWith('.webp'))
   const bytes = files.reduce((a, f) => a + statSync(join(dir, f)).size, 0)
   const h = Math.round((srcH * w) / srcW / 2) * 2
-  manifest[name] = { count: files.length, width: w, height: h, path: `/sequences/corte/${name}` }
+  manifest[name] = { count: files.length, width: w, height: h, path: `sequences/corte/${name}` }
   manifest.fps = Math.max(manifest.fps, fps)
   console.log(`✓ ${name}: ${files.length} frames, ${(bytes / 1024 / 1024).toFixed(2)} MB`)
 }

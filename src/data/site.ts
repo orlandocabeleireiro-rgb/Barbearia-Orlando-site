@@ -28,21 +28,21 @@ export const SERVICES: Service[] = [
     minutes: 30,
     price: 15,
     note: 'Máquina, tesoura e acabamento à navalha na nuca.',
-    image: '/assets/trabalho.webp',
+    image: 'assets/trabalho.webp',
   },
   {
     name: 'Barba',
     minutes: 30,
     price: 10.5,
     note: 'Toalha quente, desenho do contorno e navalha.',
-    image: '/assets/barba.webp',
+    image: 'assets/barba.webp',
   },
   {
     name: 'Cabelo e barba',
     minutes: 60,
     price: 20,
     note: 'O ritual completo. Uma hora na cadeira.',
-    image: '/assets/resultado.webp',
+    image: 'assets/resultado.webp',
   },
 ]
 

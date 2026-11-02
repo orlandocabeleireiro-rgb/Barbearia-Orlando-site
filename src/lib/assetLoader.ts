@@ -46,8 +46,9 @@ export type SequenceManifest = {
 
 let manifestPromise: Promise<SequenceManifest | null> | null = null
 export function getSequenceManifest() {
-  manifestPromise ??= fetch('/sequences/corte/manifest.json')
+  manifestPromise ??= fetch('sequences/corte/manifest.json')
     .then((r) => (r.ok ? (r.json() as Promise<SequenceManifest>) : null))
+    .then((m) => (m?.desktop?.count && m?.mobile?.count ? m : null))
     .catch(() => null)
   return manifestPromise
 }

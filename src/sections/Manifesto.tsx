@@ -58,11 +58,11 @@ export function Manifesto() {
             loop
             playsInline
             preload="none"
-            poster="/assets/video/textura-poster.webp"
+            poster="assets/video/textura-poster.webp"
             aria-hidden
           >
-            <source src="/assets/video/textura.webm" type="video/webm" />
-            <source src="/assets/video/textura.mp4" type="video/mp4" />
+            <source src="assets/video/textura.webm" type="video/webm" />
+            <source src="assets/video/textura.mp4" type="video/mp4" />
           </video>
         )}
         <div
