@@ -54,8 +54,18 @@ export const NAV = [
   { label: 'Corte', href: '#corte' },
   { label: 'Serviços', href: '#servicos' },
   { label: 'Espaço', href: '#espaco' },
+  { label: 'Equipa', href: '#equipa' },
   { label: 'Marcar', href: '#marcar' },
 ]
+
+export type Barber = {
+  name: string
+  /** foto vertical (ex.: 'assets/equipa/orlando.webp'); sem foto mostra a inicial */
+  photo?: string
+  pos?: string
+}
+
+export const TEAM: Barber[] = [{ name: 'Orlando' }, { name: 'Diogo' }, { name: 'Solange' }, { name: 'Ariane' }]
 
 export const euro = (n: number) =>
   n.toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'
