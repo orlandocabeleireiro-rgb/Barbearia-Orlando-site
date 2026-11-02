@@ -12,7 +12,44 @@ const HeroScene = lazy(() => import('../three/HeroScene'))
  * carregamento (frames da sequência, imagens críticas, fontes, chunk 3D).
  * No fim, uma cortina divide-se ao meio e revela o hero.
  */
+const KEY = 'bo-visited'
+const DAYS = 30
+
+/** Visita recente? (o preloader completo aparece só na primeira visita / a cada 30 dias) */
+function isReturning() {
+  try {
+    const t = Number(localStorage.getItem(KEY))
+    return !!t && Date.now() - t < DAYS * 864e5
+  } catch {
+    return false
+  }
+}
+function markVisited() {
+  try {
+    localStorage.setItem(KEY, String(Date.now()))
+  } catch {
+    /* sem armazenamento: mostra sempre o preloader */
+  }
+}
+
 export function Preloader() {
+  const [returning] = useState(isReturning)
+  return returning ? <QuickStart /> : <FullPreloader />
+}
+
+/** Visitas seguintes: abre logo no início, com a entrada do título. */
+function QuickStart() {
+  const { setReady } = useMotion()
+  useEffect(() => {
+    document.getElementById('boot')?.remove()
+    window.scrollTo(0, 0)
+    markVisited()
+    setReady(true)
+  }, [setReady])
+  return null
+}
+
+function FullPreloader() {
   const { reduced, mobile, setReady } = useMotion()
   const [pct, setPct] = useState(0)
   const [gone, setGone] = useState(false)
@@ -75,6 +112,7 @@ export function Preloader() {
     const el = root.current
     if (!el) return
     const done = () => {
+      markVisited()
       lockScroll(false)
       setGone(true)
     }
