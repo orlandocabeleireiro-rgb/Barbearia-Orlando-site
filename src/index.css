@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #1f2a3a;
+  --abyss: #0e141d;
+  --barber: #a8322d;
+  --cream: #ede3cc;
+  --brass: #b8925a;
+  color-scheme: dark;
+}
+
+html { background: var(--abyss); -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background: var(--abyss);
+  color: var(--cream);
+  font-family: 'Source Serif 4', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+@media (pointer: fine) {
+  body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
+}
+::selection { background: var(--barber); color: var(--cream); }
+
+@layer components {
+  .label { @apply font-label uppercase tracking-label text-[11px] font-semibold; }
+  .display { @apply font-display font-black leading-[0.86] tracking-tightest; }
+  .mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .mask > * { display: block; will-change: transform; }
+  .pad { padding-left: max(16px, 4vw); padding-right: max(16px, 4vw); }
+}
+
+/* Grão de filme + vinheta */
+.grain {
+  position: fixed; inset: -100%; z-index: 90; pointer-events: none; opacity: .11;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .85  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 0.9s steps(6) infinite;
+  mix-blend-mode: overlay;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); } 20% { transform: translate(-6%, 4%); }
+  40% { transform: translate(4%, -7%); } 60% { transform: translate(-3%, 9%); }
+  80% { transform: translate(8%, 2%); } 100% { transform: translate(-5%, -4%); }
+}
+.vignette {
+  position: fixed; inset: 0; z-index: 89; pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(5, 8, 12, .72) 100%);
+}
+
+.marquee-track { display: flex; width: max-content; will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grain { animation: none; }
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+.css-pole-stripes { animation: pole-run 2.6s linear infinite; }
+@keyframes pole-run { to { transform: translateY(22.2%); } }
