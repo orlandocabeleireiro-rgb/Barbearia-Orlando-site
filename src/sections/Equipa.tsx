@@ -41,7 +41,7 @@ export function Equipa() {
           <span className="label text-brass">A equipa</span>
           <MaskLines as="h2" className="display mt-4 text-[16vw] text-cream md:text-[8vw]" lines={['Quatro', <em className="font-normal italic text-brass">tesouras.</em>]} />
         </div>
-        <p className="max-w-xs font-serif text-lg text-cream/70">Quatro barbeiros, a mesma exigência em cada corte. Escolhe com quem queres marcar.</p>
+        <p className="max-w-xs font-serif text-lg text-cream/70">Quatro profissionais, a mesma exigência em cada corte. Escolhe com quem queres marcar.</p>
       </div>
 
       <ul className="eq-grid mt-[8vh] grid grid-cols-2 gap-x-3 gap-y-10 md:grid-cols-4 md:gap-x-5">
