@@ -26,8 +26,8 @@ export function Hero() {
   const stage = useRef<HTMLDivElement>(null)
   const { reduced, mobile, ready } = useMotion()
   const visible = useInView(root, '100px')
-  // telemóvel: mostra a imagem renderizada do poste e carrega o 3D logo a seguir
-  // ao preloader (ou na primeira interação, se for antes)
+  // telemóvel: mostra a imagem renderizada do poste (igual ao 3D) e só carrega
+  // o 3D no primeiro toque/scroll — protege o carregamento inicial
   const [want3D, setWant3D] = useState(!mobile && !reduced)
   const [ready3D, setReady3D] = useState(false)
   useEffect(() => {
@@ -36,12 +36,8 @@ export function Hero() {
     const go = () => setWant3D(true)
     const evs = ['touchstart', 'pointerdown', 'wheel', 'scroll', 'keydown'] as const
     evs.forEach((e) => window.addEventListener(e, go, { once: true, passive: true }))
-    const t = ready ? window.setTimeout(go, 1200) : 0
-    return () => {
-      clearTimeout(t)
-      evs.forEach((e) => window.removeEventListener(e, go))
-    }
-  }, [mobile, reduced, ready])
+    return () => evs.forEach((e) => window.removeEventListener(e, go))
+  }, [mobile, reduced])
 
   // rato → parallax do poste
   useLayoutEffect(() => {
@@ -62,9 +58,9 @@ export function Hero() {
       gsap.set('.hero-char', { yPercent: 115, rotate: 6 })
       gsap.set('.hero-sub', { yPercent: 120 })
       if (!ready) return
-      const tl = gsap.timeline({ delay: 0.15 })
+      const tl = gsap.timeline()
       tl.to('.hero-char', { yPercent: 0, rotate: 0, duration: 1.3, ease: 'expo.out', stagger: { each: 0.035, from: 'center' } })
-        .to('.hero-sub', { yPercent: 0, duration: 1, ease: 'expo.out', stagger: 0.08 }, '-=0.9')
+        .to('.hero-sub', { yPercent: 0, duration: 0.9, ease: 'expo.out', stagger: 0.05 }, 0.05)
         .from('.hero-hint', { opacity: 0, y: 12, duration: 0.8 }, '-=0.5')
     }, el)
     return () => ctx.revert()

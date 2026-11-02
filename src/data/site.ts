@@ -47,9 +47,9 @@ export const SERVICES: Service[] = [
 ]
 
 export const NAV = [
-  { label: 'O corte', href: '#corte' },
+  { label: 'Manifesto', href: '#manifesto' },
   { label: 'Serviços', href: '#servicos' },
-  { label: 'O espaço', href: '#espaco' },
+  { label: 'Espaço', href: '#espaco' },
   { label: 'Marcar', href: '#marcar' },
 ]
 

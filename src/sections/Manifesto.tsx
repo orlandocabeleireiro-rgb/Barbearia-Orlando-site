@@ -47,7 +47,7 @@ export function Manifesto() {
   }, [])
 
   return (
-    <section ref={root} className="relative" aria-label="Manifesto">
+    <section id="manifesto" ref={root} className="relative" aria-label="Manifesto">
       <div ref={stage} className="relative flex min-h-[100svh] items-center overflow-hidden bg-abyss">
         {!reduced && (
           <video
@@ -67,7 +67,10 @@ export function Manifesto() {
         )}
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(60% 60% at 50% 50%, transparent 0%, rgba(14,20,29,.85) 100%)' }}
+          style={{
+            background:
+              'linear-gradient(180deg, #0E141D 0%, transparent 22%, transparent 78%, #0E141D 100%), radial-gradient(60% 60% at 50% 50%, transparent 0%, rgba(14,20,29,.85) 100%)',
+          }}
         />
 
         <div className="pad relative z-10 w-full py-24">

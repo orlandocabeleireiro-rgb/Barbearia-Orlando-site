@@ -15,5 +15,3 @@ const sharp = require('sharp')
   }
   await b.close()
 })()
-// recorte só do poste (preloader no telemóvel)
-setTimeout(() => sharp('public/assets/pole-portrait.webp').trim().webp({ quality: 82, alphaQuality: 90 }).toFile('public/assets/pole-cutout.webp'), 0)

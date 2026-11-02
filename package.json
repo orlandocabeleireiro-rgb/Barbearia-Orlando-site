@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "frames": "node scripts/extract-frames.mjs",
     "images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {

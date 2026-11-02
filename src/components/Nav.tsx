@@ -38,9 +38,9 @@ export function Nav() {
           aria-expanded={open}
           aria-controls="menu"
         >
-          <span className="relative block h-[1.25em] overflow-hidden leading-[1.25]">
+          <span className="relative block h-[1.25em] w-[4.6em] overflow-hidden text-right leading-[1.25]">
             <span className={`block transition-transform duration-500 ${open ? '-translate-y-full' : ''}`}>Menu</span>
-            <span className={`absolute left-0 top-full block transition-transform duration-500 ${open ? '-translate-y-full' : ''}`}>Fechar</span>
+            <span className={`absolute right-0 top-full block transition-transform duration-500 ${open ? '-translate-y-full' : ''}`}>Fechar</span>
           </span>
           <span className="relative h-3 w-7">
             <span className={`absolute left-0 top-0 h-px w-full bg-cream transition-transform duration-500 ${open ? 'translate-y-1.5 rotate-45' : ''}`} />

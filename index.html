@@ -28,27 +28,12 @@
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Playfair+Display:ital,wght@0,900;1,400;1,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Playfair+Display:ital,wght@0,900;1,400;1,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap"
-    />
+    <link rel="preload" as="image" href="assets/pole-portrait.webp" media="(orientation: portrait)" fetchpriority="high" />
+    <link rel="preload" as="image" href="assets/pole-landscape.webp" media="(orientation: landscape)" fetchpriority="high" />
+    <link rel="preload" as="font" type="font/woff2" href="fonts/playfair-display-latin-900-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="fonts/playfair-display-latin-400-italic.woff2" crossorigin />
     <style>
       html,body{background:#0E141D;margin:0}
-      #boot{position:fixed;inset:0;z-index:96;background:#1F2A3A;color:#EDE3CC}
-      .returning #boot{display:none}
-      #boot i{position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(184,146,90,.6)}
-      #boot b{position:absolute;right:max(16px,4vw);bottom:32px;font:900 22vw/1 'Playfair Display',Georgia,serif;letter-spacing:-.045em}
-      #boot span{position:absolute;left:max(16px,4vw);bottom:40px;font:600 11px/1 'Barlow Condensed','Arial Narrow',sans-serif;letter-spacing:.32em;text-transform:uppercase;opacity:.6}
-      @media (min-width:768px){#boot b{font-size:11vw}}
     </style>
 
     <script type="application/ld+json">
@@ -102,10 +87,6 @@
     </script>
   </head>
   <body>
-    <script>
-      try { var t = +localStorage.getItem('bo-visited'); if (t && Date.now() - t < 30 * 864e5) document.body.className = 'returning' } catch (e) {}
-    </script>
-    <div id="boot" aria-hidden="true"><i></i><span>Barbearia Orlando · Porto</span><b>000</b></div>
     <div id="root"></div>
     <noscript>
       <div style="padding:2rem;font-family:Georgia,serif;color:#EDE3CC;background:#0E141D">

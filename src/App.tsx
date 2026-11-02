@@ -5,7 +5,6 @@ import { arm, requestRefresh } from './lib/scrollQueue'
 import { Grain } from './components/Grain'
 import { Nav } from './components/Nav'
 import { MobileCTA } from './components/MobileCTA'
-import { Preloader } from './sections/Preloader'
 import { Hero } from './sections/Hero'
 import { BelowFold } from './sections/BelowFold'
 
@@ -42,7 +41,6 @@ export default function App() {
 
   return (
     <>
-      <Preloader />
       <Nav />
       <main>
         <Hero />
