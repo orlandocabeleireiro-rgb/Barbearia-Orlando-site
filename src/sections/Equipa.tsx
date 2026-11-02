@@ -19,10 +19,24 @@ export function Equipa() {
     if (!el) return
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>('.eq-media').forEach((m) => {
-        gsap.fromTo(m, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: m.parentElement!, start: 'top bottom', end: 'bottom top', scrub: true } })
+        gsap.fromTo(
+          m,
+          { yPercent: -6 },
+          {
+            yPercent: 6,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: m.parentElement!,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          },
+        )
       })
 
-      // passagem: tesoura grande abre, corta três vezes ao longo de uma linha e o ecrã abre-se pelo corte
+      // passagem: a camada da tesoura fica presa por CSS (sticky, suave também no toque);
+      // a tesoura abre, dá uma tesourada e o ecrã abre-se pelo corte, revelando a secção por baixo
       const b1 = '.eq-blade-a'
       const b2 = '.eq-blade-b'
       gsap.set('.eq-fx', { autoAlpha: 1 })
@@ -33,76 +47,100 @@ export function Equipa() {
 
       const tl = gsap.timeline({
         defaults: { ease: 'power2.inOut' },
-        scrollTrigger: { trigger: el, start: 'top top', end: '+=110%', pin: true, scrub: 0.6, anticipatePin: 1 },
+        scrollTrigger: {
+          trigger: '.eq-runway',
+          start: 'top 70%',
+          end: 'bottom bottom',
+          scrub: 0.5,
+        },
       })
-      tl.fromTo('.eq-scissors', { scale: 0.35, autoAlpha: 0, rotation: -40 }, { scale: 1, autoAlpha: 1, rotation: 0, duration: 1, ease: 'back.out(1.3)' })
+      tl.fromTo(
+        '.eq-scissors',
+        { scale: 0.35, autoAlpha: 0, rotation: -40 },
+        {
+          scale: 1,
+          autoAlpha: 1,
+          rotation: 0,
+          duration: 1.2,
+          ease: 'back.out(1.3)',
+        },
+      )
         .to(b1, { rotation: -1, duration: 0.4, ease: 'power4.in' }, '+=0.25')
         .to(b2, { rotation: 1, duration: 0.4, ease: 'power4.in' }, '<')
         .to('.eq-line', { scaleX: 1, duration: 0.4, ease: 'power4.in' }, '<')
-        .to('.eq-scissors', { scale: 1.8, autoAlpha: 0, duration: 0.6, ease: 'power2.in' }, '+=0.1')
-        .to('.eq-cover-top', { yPercent: -100, duration: 1.3 }, '-=0.3')
-        .to('.eq-cover-bot', { yPercent: 100, duration: 1.3 }, '<')
+        .to('.eq-scissors', { scale: 1.6, autoAlpha: 0, duration: 0.45, ease: 'power2.in' }, '+=0.05')
+        .to('.eq-cover-top', { yPercent: -100, duration: 1.3, ease: 'power3.out' }, '-=0.4')
+        .to('.eq-cover-bot', { yPercent: 100, duration: 1.3, ease: 'power3.out' }, '<')
         .to('.eq-line', { autoAlpha: 0, duration: 0.3 }, '<')
-        .fromTo('.eq-head', { scale: 1.08, autoAlpha: 0.4 }, { scale: 1, autoAlpha: 1, duration: 1.3 }, '<')
+        .fromTo('.eq-head', { scale: 1.06 }, { scale: 1, duration: 1.3 }, '<')
     }, el)
     return () => ctx.revert()
   }, [])
 
   return (
-    <section id="equipa" ref={root} className="pad relative bg-abyss pb-[12vh] pt-[18vh]" aria-label="A equipa">
-      <div className="eq-head flex origin-top-left flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <div>
-          <span className="label text-brass">A equipa</span>
-          <MaskLines as="h2" className="display mt-4 text-[16vw] text-cream md:text-[8vw]" lines={['Barbeiros']} />
-        </div>
-        <p className="max-w-xs font-serif text-lg text-cream/70">Quatro profissionais, a mesma exigência em cada corte. Escolhe com quem queres marcar.</p>
-      </div>
-
-      <div className="eq-stage relative mt-[4vh] py-[5vh] md:pb-[12vh]">
-      <ul className="eq-grid grid grid-cols-2 gap-x-3 gap-y-10 md:grid-cols-4 md:gap-x-5">
-        {TEAM.map((b, i) => (
-          <li key={b.name} className={OFFSET[i % OFFSET.length]}>
-            <a href={SITE.booking} target="_blank" rel="noopener" className="group block" data-cursor="view" aria-label={`Marcar com ${b.name}`}>
-              <div className="eq-card relative aspect-[3/4] overflow-hidden rounded-[18px] bg-navy shadow-[0_30px_80px_rgba(0,0,0,.55)] ring-1 ring-brass/20">
-                {b.photo ? (
-                  <img
-                    src={b.photo}
-                    alt={`${b.name}, Barbearia Orlando`}
-                    loading="lazy"
-                    decoding="async"
-                    style={{ objectPosition: b.pos ?? '50% 35%' }}
-                    className="eq-media photo-grade absolute inset-x-0 -top-[8%] h-[116%] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="eq-media absolute inset-0 flex items-center justify-center bg-[radial-gradient(120%_80%_at_50%_20%,rgba(184,146,90,.18),transparent_60%)]">
-                    <span aria-hidden className="display select-none text-[38vw] italic text-brass/25 transition-colors duration-700 group-hover:text-brass/45 md:text-[15vw]">
-                      {b.name[0]}
-                    </span>
-                  </div>
-                )}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-abyss/80 via-transparent to-abyss/10" />
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4 md:p-5">
-                  <span className="display text-[8vw] text-cream md:text-[2.6vw]">{b.name}</span>
-                  <span className="label translate-y-1 text-brass opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">Marcar ↗</span>
-                </div>
-              </div>
-              <div className="mt-3 flex items-baseline justify-between gap-4">
-                <span className="label text-brass">{String(i + 1).padStart(2, '0')}</span>
-                <span className="font-display text-sm italic text-cream/70 md:text-base">Corte · Barba</span>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-      </div>
+    <section id="equipa" ref={root} className="relative bg-abyss" aria-label="A equipa">
       {!reduced && (
-        <div className="eq-fx pointer-events-none invisible absolute inset-x-0 top-0 z-20 h-[100svh] overflow-hidden" aria-hidden>
-          <div className="eq-cover-top absolute inset-x-0 top-0 h-1/2 bg-abyss" />
-          <div className="eq-cover-bot absolute inset-x-0 bottom-0 h-1/2 bg-abyss" />
-          <div className="eq-line absolute inset-x-0 top-1/2 h-px bg-brass shadow-[0_0_14px_rgba(184,146,90,.8)]" />
-          <Scissors className="eq-scissors absolute left-1/2 top-1/2 w-[94vw] text-brass drop-shadow-[0_20px_40px_rgba(0,0,0,.6)] md:w-[58vw]" />
+        <div className="eq-runway relative h-[190lvh]" aria-hidden>
+          <div className="eq-fx pointer-events-none invisible sticky top-0 z-20 h-[100lvh] overflow-hidden">
+            <div className="eq-cover-top absolute inset-x-0 top-0 h-1/2 bg-abyss" />
+            <div className="eq-cover-bot absolute inset-x-0 bottom-0 h-1/2 bg-abyss" />
+            <div className="eq-line absolute inset-x-0 top-1/2 h-px bg-brass shadow-[0_0_14px_rgba(184,146,90,.8)]" />
+            <Scissors className="eq-scissors absolute left-1/2 top-1/2 w-[94vw] text-brass drop-shadow-[0_20px_40px_rgba(0,0,0,.6)] md:w-[58vw]" />
+          </div>
         </div>
       )}
+      <div className={`pad relative pb-[12vh] pt-[18vh] ${reduced ? '' : '-mt-[100lvh]'}`}>
+        <div className="eq-head flex origin-top-left flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <span className="label text-brass">A equipa</span>
+            <MaskLines as="h2" className="display mt-4 text-[16vw] text-cream md:text-[8vw]" lines={['Barbeiros']} />
+          </div>
+          <p className="max-w-xs font-serif text-lg text-cream/70">Quatro profissionais, a mesma exigência em cada corte. Escolhe com quem queres marcar.</p>
+        </div>
+
+        <div className="eq-stage relative mt-[4vh] py-[5vh] md:pb-[12vh]">
+          <ul className="eq-grid grid grid-cols-2 gap-x-3 gap-y-10 md:grid-cols-4 md:gap-x-5">
+            {TEAM.map((b, i) => (
+              <li key={b.name} className={OFFSET[i % OFFSET.length]}>
+                <a href={SITE.booking} target="_blank" rel="noopener" className="group block" data-cursor="view" aria-label={`Marcar com ${b.name}`}>
+                  <div className="eq-card relative aspect-[3/4] overflow-hidden rounded-[18px] bg-navy shadow-[0_30px_80px_rgba(0,0,0,.55)] ring-1 ring-brass/20">
+                    {b.photo ? (
+                      <img
+                        src={b.photo}
+                        alt={`${b.name}, Barbearia Orlando`}
+                        loading="lazy"
+                        decoding="async"
+                        style={{ objectPosition: b.pos ?? '50% 35%' }}
+                        className="eq-media photo-grade absolute inset-x-0 -top-[8%] h-[116%] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="eq-media absolute inset-x-0 -top-[8%] flex h-[116%] items-center justify-center bg-[radial-gradient(120%_80%_at_50%_20%,rgba(184,146,90,.18),transparent_60%)]">
+                        <span
+                          aria-hidden
+                          className="display select-none text-[38vw] italic text-brass/25 transition-colors duration-700 group-hover:text-brass/45 md:text-[15vw]"
+                        >
+                          {b.name[0]}
+                        </span>
+                      </div>
+                    )}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-abyss/80 via-transparent to-abyss/10" />
+                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4 md:p-5">
+                      <span className="display text-[8vw] text-cream md:text-[2.6vw]">{b.name}</span>
+                      <span className="label translate-y-1 text-brass opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                        Marcar ↗
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-baseline justify-between gap-4">
+                    <span className="label text-brass">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="font-display text-sm italic text-cream/70 md:text-base">Corte · Barba</span>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
   )
 }
