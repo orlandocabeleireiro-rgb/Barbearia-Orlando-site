@@ -1,9 +1,13 @@
-import { useRef } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { useScrollSetup } from '../hooks/useScrollSetup'
 import { gsap } from '../lib/gsap'
 import { SITE, TEAM } from '../data/site'
 import { MaskLines } from '../components/MaskLines'
 import { useMotion } from '../context/MotionContext'
+import { useInView } from '../hooks/useInView'
+import { scissorsState } from '../three/state'
+
+const ScissorsScene = lazy(() => import('../three/ScissorsScene'))
 
 // ritmo vertical alternado (só em ecrãs largos)
 const OFFSET = ['md:translate-y-0', 'md:translate-y-[6vh]', 'md:translate-y-[2vh]', 'md:translate-y-[8vh]']
@@ -12,7 +16,14 @@ const OFFSET = ['md:translate-y-0', 'md:translate-y-[6vh]', 'md:translate-y-[2vh
 export function Equipa() {
   const root = useRef<HTMLElement>(null)
 
-  const { reduced } = useMotion()
+  const runway = useRef<HTMLDivElement>(null)
+  const { reduced, mobile } = useMotion()
+  // a cena 3D só é carregada quando a passagem se aproxima e só desenha enquanto está à vista
+  const near = useInView(runway, '60% 0px')
+  const [want3D, setWant3D] = useState(false)
+  useEffect(() => {
+    if (near && !reduced) setWant3D(true)
+  }, [near, reduced])
 
   useScrollSetup(() => {
     const el = root.current
@@ -35,44 +46,30 @@ export function Equipa() {
         )
       })
 
-      // passagem: a camada da tesoura fica presa por CSS (sticky, suave também no toque);
-      // a tesoura abre, dá uma tesourada e o ecrã abre-se pelo corte, revelando a secção por baixo
-      const b1 = '.eq-blade-a'
-      const b2 = '.eq-blade-b'
+      // passagem: a camada fica presa por CSS (sticky, suave também no toque); uma tesoura 3D em latão
+      // (como o poste do início) entra de lado, dá uma só tesourada e o ecrã abre-se pelo corte
       gsap.set('.eq-fx', { autoAlpha: 1 })
       gsap.set('.eq-line', { scaleX: 0, transformOrigin: '50% 50%' })
-      gsap.set('.eq-scissors', { xPercent: -50, yPercent: -50 })
-      gsap.set(b1, { rotation: -26, svgOrigin: '0 0' })
-      gsap.set(b2, { rotation: 26, svgOrigin: '0 0' })
-
       const tl = gsap.timeline({
         defaults: { ease: 'power2.inOut' },
         scrollTrigger: {
           trigger: '.eq-runway',
-          start: 'top 70%',
+          start: 'top 40%',
           end: 'bottom bottom',
-          scrub: 0.5,
+          scrub: 0.4,
+          onUpdate: (st) => (scissorsState.progress = st.progress),
         },
       })
-      tl.fromTo(
-        '.eq-scissors',
-        { scale: 0.35, autoAlpha: 0, rotation: -40 },
-        {
-          scale: 1,
-          autoAlpha: 1,
-          rotation: 0,
-          duration: 1.2,
-          ease: 'back.out(1.3)',
-        },
-      )
-        .to(b1, { rotation: -1, duration: 0.4, ease: 'power4.in' }, '+=0.25')
-        .to(b2, { rotation: 1, duration: 0.4, ease: 'power4.in' }, '<')
-        .to('.eq-line', { scaleX: 1, duration: 0.4, ease: 'power4.in' }, '<')
-        .to('.eq-scissors', { scale: 1.6, autoAlpha: 0, duration: 0.45, ease: 'power2.in' }, '+=0.05')
-        .to('.eq-cover-top', { yPercent: -100, duration: 1.3, ease: 'power3.out' }, '-=0.4')
-        .to('.eq-cover-bot', { yPercent: 100, duration: 1.3, ease: 'power3.out' }, '<')
-        .to('.eq-line', { autoAlpha: 0, duration: 0.3 }, '<')
-        .fromTo('.eq-head', { scale: 1.06 }, { scale: 1, duration: 1.3 }, '<')
+      // posições em fração do percurso (0–1), alinhadas com a cena 3D
+      tl.to('.eq-line', { scaleX: 1, duration: 0.03, ease: 'power4.in' }, 0.475)
+        .fromTo('.eq-flash', { opacity: 0 }, { opacity: 1, duration: 0.03, ease: 'none' }, 0.485)
+        .to('.eq-flash', { opacity: 0, duration: 0.1, ease: 'power1.out' }, 0.515)
+        .to('.eq-cover-top', { yPercent: -100, duration: 0.28, ease: 'power2.out' }, 0.54)
+        .to('.eq-cover-bot', { yPercent: 100, duration: 0.28, ease: 'power2.out' }, 0.54)
+        .to('.eq-line', { autoAlpha: 0, duration: 0.06 }, 0.57)
+        .to('.eq-glow', { opacity: 0, duration: 0.2 }, 0.54)
+        .fromTo('.eq-head', { scale: 1.06 }, { scale: 1, duration: 0.3, ease: 'power2.out' }, 0.54)
+        .set({}, {}, 1)
     }, el)
     return () => ctx.revert()
   }, [])
@@ -80,12 +77,21 @@ export function Equipa() {
   return (
     <section id="equipa" ref={root} className="relative bg-abyss" aria-label="A equipa">
       {!reduced && (
-        <div className="eq-runway relative h-[190lvh]" aria-hidden>
+        <div ref={runway} className="eq-runway relative h-[200lvh]" aria-hidden>
           <div className="eq-fx pointer-events-none invisible sticky top-0 z-20 h-[100lvh] overflow-hidden">
             <div className="eq-cover-top absolute inset-x-0 top-0 h-1/2 bg-abyss" />
             <div className="eq-cover-bot absolute inset-x-0 bottom-0 h-1/2 bg-abyss" />
-            <div className="eq-line absolute inset-x-0 top-1/2 h-px bg-brass shadow-[0_0_14px_rgba(184,146,90,.8)]" />
-            <Scissors className="eq-scissors absolute left-1/2 top-1/2 w-[94vw] text-brass drop-shadow-[0_20px_40px_rgba(0,0,0,.6)] md:w-[58vw]" />
+            <div
+              className="eq-glow absolute inset-0"
+              style={{ background: 'radial-gradient(45% 40% at 50% 50%, rgba(232,176,108,.16), rgba(232,176,108,.04) 50%, transparent 72%)' }}
+            />
+            <div className="eq-line absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 bg-[#ffe2b0] shadow-[0_0_18px_4px_rgba(232,176,108,.75)]" />
+            <div className="eq-flash absolute inset-0 opacity-0" style={{ background: 'radial-gradient(60% 18% at 50% 50%, rgba(255,226,176,.35), transparent 70%)' }} />
+            {want3D && (
+              <Suspense fallback={null}>
+                <ScissorsScene quality={mobile ? 'low' : 'high'} active={near} particles={mobile ? 160 : 600} />
+              </Suspense>
+            )}
           </div>
         </div>
       )}
@@ -142,28 +148,5 @@ export function Equipa() {
         </div>
       </div>
     </section>
-  )
-}
-
-/** Tesoura em SVG: duas lâminas que rodam à volta do parafuso (0,0). */
-function Scissors({ className }: { className?: string }) {
-  const half = (
-    <>
-      <path d="M-8,-8 C40,-16 120,-14 196,-2 C198,-1 198,1 196,1 C120,2 40,4 -8,7 Z" fill="currentColor" />
-      <path d="M10,-5 C70,-10 140,-8 190,-1.5" stroke="#EDE3CC" strokeOpacity=".55" strokeWidth="1.5" fill="none" />
-      <path d="M6,2 L-82,30 C-90,33 -92,40 -88,46 L-76,44 L4,14 Z" fill="currentColor" />
-      <circle cx="-118" cy="52" r="30" fill="none" stroke="currentColor" strokeWidth="11" />
-      <circle cx="-118" cy="52" r="30" fill="none" stroke="#EDE3CC" strokeOpacity=".25" strokeWidth="2" />
-    </>
-  )
-  return (
-    <svg viewBox="-172 -172 384 344" className={className} overflow="visible">
-      <g className="eq-blade-b">
-        <g transform="scale(1,-1)">{half}</g>
-      </g>
-      <g className="eq-blade-a">{half}</g>
-      <circle r="9" fill="#1F2A3A" stroke="#EDE3CC" strokeWidth="2.5" />
-      <circle r="2.5" fill="#EDE3CC" />
-    </svg>
   )
 }
