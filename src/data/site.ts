@@ -65,7 +65,12 @@ export type Barber = {
   pos?: string
 }
 
-export const TEAM: Barber[] = [{ name: 'Orlando' }, { name: 'Diogo' }, { name: 'Solange' }, { name: 'Ariane' }]
+export const TEAM: Barber[] = [
+  { name: 'Orlando' },
+  { name: 'Diogo', photo: 'assets/equipa/diogo.webp' },
+  { name: 'Solange', photo: 'assets/equipa/solange.webp' },
+  { name: 'Ariane', photo: 'assets/equipa/ariane.webp' },
+]
 
 export const euro = (n: number) =>
   n.toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'
