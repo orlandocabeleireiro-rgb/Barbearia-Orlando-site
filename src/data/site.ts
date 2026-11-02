@@ -21,6 +21,7 @@ export type Service = {
   price: number
   note: string
   image: string
+  pos?: string
 }
 
 export const SERVICES: Service[] = [
@@ -30,6 +31,7 @@ export const SERVICES: Service[] = [
     price: 15,
     note: 'Máquina e tesoura, com o melhor acabamento.',
     image: 'assets/espaco/ferramentas.webp',
+    pos: '50% 45%',
   },
   {
     name: 'Barba',
@@ -44,6 +46,7 @@ export const SERVICES: Service[] = [
     price: 20,
     note: 'O serviço completo. Uma hora na cadeira.',
     image: 'assets/espaco/cadeira.webp',
+    pos: '50% 60%',
   },
 ]
 

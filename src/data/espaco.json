@@ -1,8 +1,8 @@
 [
-  { "src": "assets/espaco/montra.webp", "caption": "A montra" },
-  { "src": "assets/espaco/cadeira.webp", "caption": "A cadeira" },
-  { "src": "assets/espaco/balcao.webp", "caption": "O balcão" },
-  { "src": "assets/espaco/espelho.webp", "caption": "O espelho" },
-  { "src": "assets/espaco/ferramentas.webp", "caption": "As ferramentas" },
-  { "src": "assets/espaco/polo.webp", "caption": "O polo" }
+  { "src": "assets/espaco/montra.webp", "caption": "A montra", "pos": "50% 45%" },
+  { "src": "assets/espaco/cadeira.webp", "caption": "A cadeira", "pos": "50% 62%" },
+  { "src": "assets/espaco/balcao.webp", "caption": "O balcão", "pos": "45% 45%" },
+  { "src": "assets/espaco/espelho.webp", "caption": "O espelho", "pos": "50% 50%" },
+  { "src": "assets/espaco/ferramentas.webp", "caption": "As ferramentas", "pos": "50% 45%" },
+  { "src": "assets/espaco/polo.webp", "caption": "O polo", "pos": "68% 40%" }
 ]

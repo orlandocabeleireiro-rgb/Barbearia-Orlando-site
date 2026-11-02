@@ -2,7 +2,12 @@ import { SITE } from '../data/site'
 import { MaskLines } from '../components/MaskLines'
 import { InstagramIcon } from '../components/Icons'
 
-const TILES = ['assets/espaco/montra.webp', 'assets/espaco/cadeira.webp', 'assets/espaco/ferramentas.webp', 'assets/espaco/polo.webp']
+const TILES = [
+  { src: 'assets/espaco/montra.webp', pos: '50% 42%' },
+  { src: 'assets/espaco/cadeira.webp', pos: '50% 58%' },
+  { src: 'assets/espaco/ferramentas.webp', pos: '50% 45%' },
+  { src: 'assets/espaco/polo.webp', pos: '70% 38%' },
+]
 
 /** Faixa do Instagram: convite a seguir, com mosaico de imagens a ligar ao perfil. */
 export function Instagram() {
@@ -33,7 +38,7 @@ export function Instagram() {
       </div>
 
       <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-        {TILES.map((src, i) => (
+        {TILES.map(({ src, pos }, i) => (
           <a
             key={src}
             href={SITE.instagram}
@@ -43,7 +48,7 @@ export function Instagram() {
             aria-label={`Ver no Instagram (${i + 1})`}
             className="group relative aspect-square overflow-hidden rounded-[18px] bg-navy"
           >
-            <img src={src} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <img src={src} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className="photo-grade h-full w-full object-cover transition-[filter,transform] duration-700 group-hover:scale-110" />
             <span className="absolute inset-0 flex items-center justify-center bg-abyss/0 text-cream opacity-0 transition-all duration-500 group-hover:bg-abyss/50 group-hover:opacity-100">
               <InstagramIcon className="h-8 w-8" />
             </span>

@@ -69,8 +69,8 @@ export function Servicos() {
                   </a>
                 </div>
               </div>
-              <div className="relative min-h-[34svh] overflow-hidden md:min-h-0" data-cursor="view">
-                <img src={s.image} alt={`${s.name} na Barbearia Orlando`} loading="lazy" decoding="async" className="svc-img absolute inset-0 h-full w-full object-cover" />
+              <div className="group relative min-h-[34svh] overflow-hidden md:min-h-0" data-cursor="view">
+                <img src={s.image} alt={`${s.name} na Barbearia Orlando`} loading="lazy" decoding="async" style={{ objectPosition: s.pos ?? '50% 50%' }} className="svc-img photo-grade absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/70 to-transparent md:bg-gradient-to-r" />
               </div>
             </article>

@@ -5,9 +5,10 @@ import { useMotion } from '../context/MotionContext'
 import { MaskLines } from '../components/MaskLines'
 import photos from '../data/espaco.json'
 
-type Photo = { src: string; caption: string; placeholder?: boolean }
+type Photo = { src: string; caption: string; pos?: string; placeholder?: boolean }
 
-const SIZES = ['md:w-[34vw] md:h-[68vh]', 'md:w-[26vw] md:h-[50vh] md:self-end', 'md:w-[40vw] md:h-[58vh]', 'md:w-[24vw] md:h-[44vh]', 'md:w-[32vw] md:h-[70vh] md:self-end', 'md:w-[28vw] md:h-[52vh]']
+// ritmo vertical alternado (só em ecrãs largos)
+const OFFSET = ['md:-translate-y-[4vh]', 'md:translate-y-[5vh]', 'md:-translate-y-[1vh]', 'md:translate-y-[6vh]', 'md:-translate-y-[3vh]', 'md:translate-y-[3vh]']
 
 export function Espaco() {
   const root = useRef<HTMLElement>(null)
@@ -28,8 +29,8 @@ export function Espaco() {
       gsap.utils.toArray<HTMLElement>('.esp-img').forEach((img) => {
         gsap.fromTo(
           img,
-          { xPercent: -14 },
-          { xPercent: 14, ease: 'none', scrollTrigger: { trigger: img.parentElement!, containerAnimation: move, start: 'left right', end: 'right left', scrub: true } },
+          { xPercent: -5 },
+          { xPercent: 5, ease: 'none', scrollTrigger: { trigger: img.parentElement!, containerAnimation: move, start: 'left right', end: 'right left', scrub: true } },
         )
       })
       gsap.to('.esp-progress', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: el, start: 'top top', end: () => `+=${dist()}`, scrub: true } })
@@ -42,7 +43,7 @@ export function Espaco() {
       <div className={`flex h-[100svh] flex-col justify-center ${reduced ? 'h-auto py-24' : ''}`}>
         <div
           ref={track}
-          className={`pad flex items-stretch gap-[3vw] ${reduced ? 'flex-col md:flex-row md:flex-wrap' : 'w-max'}`}
+          className={`pad flex items-center gap-[4vw] md:gap-[3vw] ${reduced ? 'flex-col md:flex-row md:flex-wrap' : 'w-max'}`}
         >
           <div className="flex w-[82vw] shrink-0 flex-col justify-center md:w-[36vw]">
             <span className="label text-brass">O espaço</span>
@@ -52,24 +53,21 @@ export function Espaco() {
             </p>
           </div>
           {(photos as Photo[]).map((p, i) => (
-            <figure key={p.src} className={`relative flex h-[60svh] w-[78vw] shrink-0 flex-col ${SIZES[i % SIZES.length]}`}>
-              <div className="relative flex-1 overflow-hidden rounded-[18px] bg-navy" data-cursor="view">
+            <figure key={p.src} className={`group relative shrink-0 ${OFFSET[i % OFFSET.length]}`}>
+              <div className="relative aspect-[3/4] h-[56svh] overflow-hidden rounded-[18px] bg-navy shadow-[0_30px_80px_rgba(0,0,0,.55)] ring-1 ring-brass/20 md:h-[60vh]" data-cursor="view">
                 <img
                   src={p.src}
                   alt={p.placeholder ? '' : `${p.caption} — Barbearia Orlando, Porto`}
                   loading="lazy"
                   decoding="async"
-                  className="esp-img absolute inset-y-0 -left-[15%] h-full w-[130%] max-w-none object-cover"
+                  style={{ objectPosition: p.pos ?? '50% 50%' }}
+                  className="esp-img photo-grade absolute inset-y-0 -left-[6%] h-full w-[112%] max-w-none object-cover"
                 />
-                {p.placeholder && (
-                  <span className="label absolute left-4 top-4 rounded-full bg-abyss/70 px-3 py-1.5 text-cream/70 backdrop-blur">
-                    espaco/{p.caption}.jpg
-                  </span>
-                )}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-abyss/55 via-transparent to-abyss/10" />
               </div>
-              <figcaption className="mt-3 flex justify-between">
-                <span className="label text-cream/60">{String(i + 1).padStart(2, '0')}</span>
-                <span className="font-display text-sm italic text-cream/80">{p.caption}</span>
+              <figcaption className="mt-4 flex items-baseline justify-between gap-6">
+                <span className="label text-brass">{String(i + 1).padStart(2, '0')}</span>
+                <span className="font-display text-base italic text-cream/85">{p.caption}</span>
               </figcaption>
             </figure>
           ))}

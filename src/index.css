@@ -62,6 +62,12 @@ body {
   background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(5, 8, 12, .72) 100%);
 }
 
+.photo-grade {
+  filter: saturate(.86) contrast(1.06) brightness(.86) sepia(.1);
+  transition: filter .7s ease;
+}
+.group:hover .photo-grade { filter: saturate(1) contrast(1.02) brightness(.98) sepia(0); }
+
 .marquee-track { display: flex; width: max-content; will-change: transform; }
 
 @media (prefers-reduced-motion: reduce) {
