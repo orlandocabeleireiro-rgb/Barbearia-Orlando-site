@@ -2,7 +2,7 @@ import { SITE } from '../data/site'
 import { MaskLines } from '../components/MaskLines'
 import { InstagramIcon } from '../components/Icons'
 
-const TILES = ['assets/trabalho.webp', 'assets/barba.webp', 'assets/resultado.webp', 'assets/espaco/cadeira.webp']
+const TILES = ['assets/espaco/montra.webp', 'assets/espaco/cadeira.webp', 'assets/espaco/ferramentas.webp', 'assets/espaco/polo.webp']
 
 /** Faixa do Instagram: convite a seguir, com mosaico de imagens a ligar ao perfil. */
 export function Instagram() {

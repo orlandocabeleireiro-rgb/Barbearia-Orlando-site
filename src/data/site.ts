@@ -29,7 +29,7 @@ export const SERVICES: Service[] = [
     minutes: 30,
     price: 15,
     note: 'Máquina e tesoura, com o melhor acabamento.',
-    image: 'assets/trabalho.webp',
+    image: 'assets/espaco/ferramentas.webp',
   },
   {
     name: 'Barba',
@@ -43,7 +43,7 @@ export const SERVICES: Service[] = [
     minutes: 60,
     price: 20,
     note: 'O serviço completo. Uma hora na cadeira.',
-    image: 'assets/resultado.webp',
+    image: 'assets/espaco/cadeira.webp',
   },
 ]
 

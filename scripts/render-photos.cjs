@@ -11,7 +11,7 @@ const JOBS = {
   espelho: ['public/assets/espaco/espelho.webp', 1100, 1400],
   ferramentas: ['public/assets/espaco/ferramentas.webp', 1100, 1400],
   montra: ['public/assets/espaco/montra.webp', 1100, 1400],
-  detalhe: ['public/assets/espaco/detalhe.webp', 1100, 1400],
+  polo: ['public/assets/espaco/polo.webp', 1100, 1400],
 }
 ;(async () => {
   const only = process.argv.slice(2)
