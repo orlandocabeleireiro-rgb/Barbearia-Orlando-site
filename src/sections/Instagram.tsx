@@ -11,14 +11,14 @@ export function Instagram() {
       <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div>
           <span className="label flex items-center gap-2 text-brass">
-            <InstagramIcon className="h-4 w-4" /> Instagram
+            <InstagramIcon className="h-4 w-4" /> Redes sociais
           </span>
           <MaskLines
             as="h2"
             className="display mt-4 text-[13vw] text-cream md:text-[7.5vw]"
-            lines={['Segue', <em className="font-normal italic text-brass">a cadeira.</em>]}
+            lines={['Segue-nos', <em className="font-normal italic text-brass">nas redes sociais.</em>]}
           />
-          <p className="mt-6 max-w-sm font-serif text-lg text-cream/70">Cortes novos todas as semanas. O dia a dia da barbearia em {SITE.instagramLabel}.</p>
+          <p className="mt-6 max-w-sm font-serif text-lg text-cream/70">Cortes, novidades e o dia a dia da barbearia no Instagram, em {SITE.instagramLabel}.</p>
         </div>
         <a
           href={SITE.instagram}
