@@ -4,7 +4,6 @@ import { useMotion } from '../context/MotionContext'
 import { useInView } from '../hooks/useInView'
 import { heroState } from '../three/state'
 import { chars } from '../lib/split'
-import { CssPole } from '../components/CssPole'
 
 const HeroScene = lazy(() => import('../three/HeroScene'))
 
@@ -27,16 +26,22 @@ export function Hero() {
   const stage = useRef<HTMLDivElement>(null)
   const { reduced, mobile, ready } = useMotion()
   const visible = useInView(root, '100px')
-  // telemóvel: começa com o poste em CSS e só carrega o 3D na primeira interação
-  const [want3D, setWant3D] = useState(!mobile)
+  // telemóvel: mostra a imagem renderizada do poste e carrega o 3D logo a seguir
+  // ao preloader (ou na primeira interação, se for antes)
+  const [want3D, setWant3D] = useState(!mobile && !reduced)
   const [ready3D, setReady3D] = useState(false)
   useEffect(() => {
-    if (!mobile || reduced) return setWant3D(!reduced)
+    if (reduced) return setWant3D(false)
+    if (!mobile) return setWant3D(true)
     const go = () => setWant3D(true)
     const evs = ['touchstart', 'pointerdown', 'wheel', 'scroll', 'keydown'] as const
     evs.forEach((e) => window.addEventListener(e, go, { once: true, passive: true }))
-    return () => evs.forEach((e) => window.removeEventListener(e, go))
-  }, [mobile, reduced])
+    const t = ready ? window.setTimeout(go, 1200) : 0
+    return () => {
+      clearTimeout(t)
+      evs.forEach((e) => window.removeEventListener(e, go))
+    }
+  }, [mobile, reduced, ready])
 
   // rato → parallax do poste
   useLayoutEffect(() => {
@@ -101,9 +106,10 @@ export function Hero() {
         />
 
         {(reduced || !ready3D) && (
-          <div className={`absolute inset-0 z-10 transition-opacity duration-700 ${ready3D ? 'opacity-0' : ''}`}>
-            {mobile ? <CssPole className="absolute left-1/2 top-[9svh] h-[54svh] w-[54svh] -translate-x-1/2" animate={!reduced} /> : reduced ? <StaticPole /> : null}
-          </div>
+          <picture className={`absolute inset-0 z-10 transition-opacity duration-700 ${ready3D ? 'opacity-0' : ''}`}>
+            <source media="(orientation: portrait)" srcSet="assets/pole-portrait.webp" />
+            <img src="assets/pole-landscape.webp" alt="" aria-hidden className="h-full w-full object-cover" fetchPriority="high" />
+          </picture>
         )}
         {!reduced && want3D && (
           <div className={`absolute inset-0 z-10 transition-opacity duration-700 ${ready3D ? '' : 'opacity-0'}`}>
@@ -131,21 +137,5 @@ export function Hero() {
         <div className="hero-fade pointer-events-none absolute inset-0 z-20 bg-abyss opacity-0" />
       </div>
     </section>
-  )
-}
-
-/** Versão estática (prefers-reduced-motion): poste desenhado em CSS. */
-function StaticPole() {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center" aria-hidden>
-      <div className="relative flex flex-col items-center">
-        <div className="h-10 w-16 rounded-t-full bg-gradient-to-b from-[#d9b57f] to-brass" />
-        <div
-          className="h-[52svh] w-14 shadow-[inset_-10px_0_20px_rgba(0,0,0,.45),inset_8px_0_14px_rgba(255,255,255,.25)]"
-          style={{ background: 'repeating-linear-gradient(-35deg,#A8322D 0 22px,#EDE3CC 22px 44px,#2C4467 44px 66px,#EDE3CC 66px 88px)' }}
-        />
-        <div className="h-10 w-16 rounded-b-full bg-gradient-to-t from-[#7d6038] to-brass" />
-      </div>
-    </div>
   )
 }

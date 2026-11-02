@@ -4,7 +4,6 @@ import { useMotion } from '../context/MotionContext'
 import { getSequenceManifest, loadAll, sequenceFrames } from '../lib/assetLoader'
 import { lockScroll } from '../lib/lenis'
 import { CORTE_FALLBACK } from './corteAssets'
-import { CssPole } from '../components/CssPole'
 
 const HeroScene = lazy(() => import('../three/HeroScene'))
 
@@ -104,7 +103,7 @@ export function Preloader() {
       {!reduced && (
         <div className="pre-pole absolute left-1/2 top-1/2 h-[46svh] w-[46svh] -translate-x-1/2 -translate-y-1/2">
           {mobile ? (
-            <CssPole className="h-full w-full" />
+            <img src="assets/pole-cutout.webp" alt="" className="pre-float mx-auto h-full w-auto object-contain" />
           ) : (
             <Suspense fallback={null}>
               <HeroScene variant="preloader" quality="low" active />

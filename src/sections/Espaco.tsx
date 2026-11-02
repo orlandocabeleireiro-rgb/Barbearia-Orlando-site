@@ -69,7 +69,7 @@ export function Espaco() {
               </div>
               <figcaption className="mt-3 flex justify-between">
                 <span className="label text-cream/60">{String(i + 1).padStart(2, '0')}</span>
-                <span className="font-display text-sm italic capitalize text-cream/80">{p.caption}</span>
+                <span className="font-display text-sm italic text-cream/80">{p.caption}</span>
               </figcaption>
             </figure>
           ))}

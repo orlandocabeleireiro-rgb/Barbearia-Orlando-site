@@ -60,5 +60,5 @@ body {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
 
-.css-pole-stripes { animation: pole-run 2.6s linear infinite; }
-@keyframes pole-run { to { transform: translateY(22.2%); } }
+.pre-float { animation: pre-float 3.2s ease-in-out infinite; }
+@keyframes pre-float { 50% { transform: translateY(-3%) rotate(-1.5deg); } }

@@ -77,3 +77,9 @@ O workflow `.github/workflows/deploy.yml` faz build e publica a cada push para `
    - `A` `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
    - `CNAME` `www` → `orlandocabeleireiro-rgb.github.io`
    - **Não mexer** no registo de `marcacoes` — as marcações continuam onde estão.
+
+## Imagens de substituição (renders 3D)
+Até haver fotos reais, as imagens de `public/assets` (trabalho, resultado, barba, espaço) são renders 3D
+gerados por `tools/photos.tsx`. Para os refazer: `npm run dev` e depois `node scripts/render-photos.cjs [cena]`.
+A imagem estática do poste (entrada do site) vem de `tools/render.tsx` via `node scripts/render-pole.cjs`.
+Estas ferramentas não entram no build do site.
