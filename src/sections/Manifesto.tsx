@@ -31,7 +31,7 @@ export function Manifesto() {
     if (!el) return
     const ctx = gsap.context(() => {
       gsap.set('.mf-word', { opacity: 0.1, filter: 'blur(6px)' })
-      gsap.set('.mf-sign .mask > span', { yPercent: 135 })
+      gsap.set('.mf-sign', { clipPath: 'inset(0% 0% 100% 0%)', y: 24 })
       gsap.set('.mf-rule', { scaleX: 0 })
       const tl = gsap.timeline({
         defaults: { ease: 'none' },
@@ -40,7 +40,8 @@ export function Manifesto() {
       tl.fromTo('.mf-word', { opacity: 0.1, filter: 'blur(6px)' }, { opacity: 1, filter: 'blur(0px)', stagger: 0.5, duration: 0.6 })
         .fromTo('.mf-forma', { color: '#EDE3CC' }, { color: '#A8322D', duration: 0.6 }, '-=0.4')
         .fromTo('.mf-rule', { scaleX: 0 }, { scaleX: 1, duration: 0.8 }, '-=0.2')
-        .fromTo('.mf-sign .mask > span', { yPercent: 135 }, { yPercent: 0, duration: 0.6, stagger: 0.1 }, '<')
+        .fromTo('.mf-sign', { clipPath: 'inset(0% 0% 100% 0%)', y: 24 }, { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.7 }, '<')
+        .to({}, { duration: 0.9 })
         .fromTo('.mf-video', { scale: 1.25 }, { scale: 1, duration: tl.duration(), ease: 'none' }, 0)
     }, el)
     return () => ctx.revert()
@@ -88,13 +89,11 @@ export function Manifesto() {
               </span>
             ))}
           </h2>
-          <div className="mt-10 flex flex-col gap-6 md:mt-14 md:flex-row md:items-end md:justify-between">
+          <div className="mt-10 md:mt-14">
             <span className="mf-rule block h-px w-40 origin-left bg-brass" />
-            <div className="mf-sign max-w-md font-serif text-lg text-cream/75 md:text-xl">
-              <span className="mask"><span>Não há dois cortes iguais. Olhamos para o remoinho,</span></span>
-              <span className="mask"><span>para o crescimento, para a cara — e só depois</span></span>
-              <span className="mask"><span>pegamos na máquina.</span></span>
-            </div>
+            <p className="mf-sign mt-6 max-w-xl font-serif text-lg leading-relaxed text-cream/75 md:text-xl">
+              Não há dois cortes iguais. Olhamos para o remoinho, para o crescimento e para a cara, e só depois pegamos na máquina.
+            </p>
           </div>
         </div>
       </div>
