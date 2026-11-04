@@ -277,7 +277,59 @@ function Detalhe() {
   )
 }
 
+
+/* ---------- serviços (Cabelo / Barba / Cabelo e barba): mesma bancada, mesma luz ---------- */
+
+function SvcBase({ cam, children, warm = 0.8 }: { cam: Cam; children: ReactNode; warm?: number }) {
+  const wood = useWood('#3a2112')
+  return (
+    <Studio cam={cam} key1={[-4, 8, 4]} warm={warm}>
+      <Counter tex={wood} />
+      <Bokeh z={-12} n={55} y={2} />
+      <group position={[4.6, 0, -6.5]} scale={0.95}>
+        <BarberPole quality="high" />
+      </group>
+      {children}
+    </Studio>
+  )
+}
+
+function SvcCabelo() {
+  return (
+    <SvcBase cam={{ pos: [0.4, 3.4, 7.6], look: [0, 0.35, 0.2], fov: 30, focus: [0, 0.2, 0.9], blur: 4 }}>
+      <Clipper position={[-1.1, 1.3, -1.6]} rotation={[0, 0.5, 0]} scale={0.95} />
+      <Scissors position={[-0.5, 0.08, 1.1]} rotation={[-Math.PI / 2, 0, 0.55]} scale={0.85} />
+      <Comb position={[0.9, 0.04, -0.5]} rotation={[-Math.PI / 2, 0, -0.35]} scale={0.6} />
+    </SvcBase>
+  )
+}
+
+function SvcBarba() {
+  return (
+    <SvcBase cam={{ pos: [0.4, 3.4, 7.6], look: [0, 0.4, 0.2], fov: 30, focus: [0, 0.3, 0.8], blur: 4 }} warm={0.65}>
+      <Bowl position={[-0.9, 0, -0.5]} />
+      <Brush position={[0.8, 0, -0.6]} scale={0.75} />
+      <Razor position={[-0.9, 0.06, 1.3]} rotation={[-Math.PI / 2, 0, -0.2]} open={2.7} scale={0.85} />
+    </SvcBase>
+  )
+}
+
+function SvcCompleto() {
+  return (
+    <SvcBase cam={{ pos: [0.3, 3.9, 7.8], look: [-0.2, 0.35, 0.2], fov: 32, focus: [0, 0.2, 0.6], blur: 4 }}>
+      <Scissors position={[-0.4, 0.08, 0.8]} rotation={[-Math.PI / 2, 0, 0.75]} scale={0.8} />
+      <Razor position={[0.0, 0.06, 0.95]} rotation={[-Math.PI / 2, 0, -0.7]} open={2.8} scale={0.8} />
+      <Brush position={[1.7, 0, -0.5]} scale={0.7} />
+      <Clipper position={[-1.5, 1.3, -1.8]} rotation={[0, 0.4, 0]} scale={0.9} />
+      <Comb position={[0.2, 0.04, -0.9]} rotation={[-Math.PI / 2, 0, 0.08]} scale={0.55} />
+    </SvcBase>
+  )
+}
+
 const SCENES: Record<string, () => JSX.Element> = {
+  'svc-cabelo': SvcCabelo,
+  'svc-barba': SvcBarba,
+  'svc-completo': SvcCompleto,
   trabalho: Trabalho,
   resultado: Resultado,
   barba: Barba,
