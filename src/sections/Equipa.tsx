@@ -95,7 +95,7 @@ export function Equipa() {
           </div>
         </div>
       )}
-      <div className={`pad relative pb-[12vh] pt-[18vh] ${reduced ? '' : '-mt-[100lvh]'}`}>
+      <div id="equipa-barbeiros" className={`pad relative pb-[12vh] pt-[18vh] ${reduced ? '' : '-mt-[100lvh]'}`}>
         <div className="eq-head flex origin-top-left flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <span className="label text-brass">A equipa</span>

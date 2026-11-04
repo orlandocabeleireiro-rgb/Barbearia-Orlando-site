@@ -56,7 +56,7 @@ export const NAV = [
   { label: 'Corte', href: '#corte' },
   { label: 'Serviços', href: '#servicos' },
   { label: 'Espaço', href: '#espaco' },
-  { label: 'Equipa', href: '#equipa' },
+  { label: 'Equipa', href: '#equipa-barbeiros' },
   { label: 'Marcar', href: '#marcar' },
 ]
 
