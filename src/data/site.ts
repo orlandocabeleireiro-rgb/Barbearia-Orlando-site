@@ -10,7 +10,8 @@ export const SITE = {
   maps: 'https://maps.app.goo.gl/RzZxhcLZCaLCqFgd9',
   mapEmbed: 'https://www.google.com/maps?q=Barbearia+Orlando,+Rua+%C3%81lvaro+de+Castel%C3%B5es+222,+4200-039+Porto&z=16&output=embed',
   hours: [
-    { days: 'Segunda a sábado', time: '09:00–13:00 · 14:30–19:30' },
+    { days: 'Segunda a sexta', time: '09:00–13:00 · 14:30–19:30' },
+    { days: 'Sábado', time: '09:00–13:00' },
     { days: 'Domingo', time: 'Fechado' },
   ],
 } as const
