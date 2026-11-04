@@ -92,7 +92,7 @@ export function Manifesto() {
           <div className="mt-10 md:mt-14">
             <span className="mf-rule block h-px w-40 origin-left bg-brass" />
             <p className="mf-sign mt-6 max-w-xl font-serif text-lg leading-relaxed text-cream/75 md:text-xl">
-              Não há dois cortes iguais. Olhamos para o remoinho, para o crescimento e para a cara, e só depois pegamos na máquina.
+              Não há dois cortes iguais. Cada um tem a sua personalidade, e o nosso trabalho é realçá-la, para que o corte combine contigo.
             </p>
           </div>
         </div>
