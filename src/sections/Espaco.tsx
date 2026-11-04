@@ -49,7 +49,7 @@ export function Espaco() {
             <span className="label text-brass">O espaço</span>
             <MaskLines as="h2" className="display mt-4 text-[17vw] text-cream md:text-[8vw]" lines={['Rua Álvaro', <>de <em className="font-normal italic text-brass">Castelões</em></>, '222.']} />
             <p className="mt-6 max-w-sm font-serif text-lg text-cream/70">
-              Cadeiras clássicas, espelhos antigos, o cheiro a loção. Uma barbearia no coração do Porto, desde 2015.
+              Um espaço clássico, pensado ao pormenor para te sentires em casa. No coração do Porto, desde 2015.
             </p>
           </div>
           {(photos as Photo[]).map((p, i) => (
