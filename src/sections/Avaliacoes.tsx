@@ -29,7 +29,7 @@ function Card({ r }: { r: (typeof REVIEWS)[number] }) {
       </div>
       <figcaption className="flex items-baseline justify-between gap-4 border-t border-cream/10 pt-4">
         <span className="label text-cream">{r.name}</span>
-        <span className="label text-right text-cream/40">{r.when} · Google{r.translated ? ' · traduzido' : ''}</span>
+        <span className="label text-right text-cream/40">Google{r.translated ? ' · traduzido' : ''}</span>
       </figcaption>
     </figure>
   )
