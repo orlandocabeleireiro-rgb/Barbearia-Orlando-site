@@ -77,7 +77,7 @@ export const TEAM: Barber[] = [
 export const euro = (n: number) =>
   n.toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'
 
-export type Review = { name: string; when: string; text: string; sample?: boolean }
+export type Review = { name: string; when: string; text: string; translated?: boolean; sample?: boolean }
 
 /** Nota e avaliações do Google (copiadas tal e qual do Perfil da Empresa). */
 export const RATING = {
@@ -88,12 +88,14 @@ export const RATING = {
   write: '',
 }
 
-// EXEMPLOS só para pré-visualizar o aspeto — a substituir pelas avaliações verdadeiras
+// avaliações de 5 estrelas copiadas tal e qual do Google Maps (Perfil da Empresa)
 export const REVIEWS: Review[] = [
-  { name: 'Exemplo A.', when: 'há 1 mês', text: 'Texto de exemplo de uma avaliação curta, para ver como fica o cartão.', sample: true },
-  { name: 'Exemplo B.', when: 'há 2 meses', text: 'Outro texto de exemplo, um pouco mais comprido, para ver como fica quando a avaliação ocupa mais linhas no cartão.', sample: true },
-  { name: 'Exemplo C.', when: 'há 3 meses', text: 'Exemplo de avaliação.', sample: true },
-  { name: 'Exemplo D.', when: 'há 4 meses', text: 'Mais um texto de exemplo para preencher a faixa de avaliações.', sample: true },
-  { name: 'Exemplo E.', when: 'há 5 meses', text: 'Texto de exemplo número cinco, só para pré-visualização.', sample: true },
-  { name: 'Exemplo F.', when: 'há 6 meses', text: 'Último exemplo.', sample: true },
+  { name: 'Francisco Azevedo', when: 'há um mês', text: 'Espetacular, atendimento 5⭐, corte a um preço fantástico e preciso' },
+  { name: 'António Paiva', when: 'há um ano', text: 'Altamente recomendado. Ligar antes a marcar reserva! O Orlando é um excelente profissional e um óptimo ser humano. Não serão mal atendidos nem mal servidos!' },
+  { name: 'Thor', when: 'há um ano', text: 'Pessoas muito simpáticas e rápidas. Obrigado pelo bom corte de cabelo!' },
+  { name: 'Rafael Pereira', when: 'há 3 anos', text: 'Atendimento espetacular. Funcionários super experientes e comunicativos. Recomendo!!' },
+  { name: 'Mathilde Lefebvre', when: 'há 3 anos', translated: true, text: 'Decoração vintage, muito original e encantadora. Uma ótima experiência para meu marido e meus dois filhos, incluindo um de 2 anos. Eles mantiveram o pequeno entretido durante o evento. Atenciosos, profissionais e gentis. Eu os recomendo muito! Obrigada a todos e vida longa ao Lego Mario! 🥰👍🏻😁' },
+  { name: 'Hugo Sousa', when: 'há 4 anos', text: 'Serviço impecável, atendimento excelente. Para uma experiência ainda mais simpática, aconselho a fazerem marcação prévia. Os funcionários são bastante simpáticos e com muita atenção ao detalhe. Serviços completos de barba e cabelo. Agora com expansão para a loja ao lado.' },
+  { name: 'João Bastos', when: 'há 6 anos', text: 'Excelente serviço. Staff muito descontraído, comunicativo e competente. Boa relação qualidade/preço.' },
+  { name: 'Hugo Fernandes', when: 'há 7 anos', text: 'Muito bom. Serviço simpático e profissional. Corresponde na perfeição à fama e aos comentários positivos. Espaço de referência sem dúvida que vou voltar. Muito bom mesmo' },
 ]

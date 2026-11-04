@@ -21,15 +21,15 @@ function Stars({ className }: { className?: string }) {
 
 function Card({ r }: { r: (typeof REVIEWS)[number] }) {
   return (
-    <figure className="relative flex w-[78vw] shrink-0 snap-start flex-col justify-between gap-8 rounded-[18px] bg-navy p-6 ring-1 ring-brass/20 md:w-[30vw] md:p-8 lg:w-[24vw]">
+    <figure className="relative flex w-[80vw] shrink-0 snap-start flex-col justify-between gap-6 rounded-[18px] bg-navy p-6 ring-1 ring-brass/20 md:w-[32vw] md:p-7 lg:w-[26vw]">
       {r.sample && <span className="label absolute right-4 top-4 rounded-full bg-barber px-2 py-1 text-[9px] text-cream">Exemplo</span>}
       <div>
         <Stars className="text-lg" />
-        <blockquote className="mt-5 font-display text-xl italic leading-snug text-cream/90 md:text-2xl">“{r.text}”</blockquote>
+        <blockquote className={`mt-5 font-display italic leading-snug text-cream/90 ${r.text.length > 200 ? 'text-[15px] md:text-base' : r.text.length > 120 ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>“{r.text}”</blockquote>
       </div>
       <figcaption className="flex items-baseline justify-between gap-4 border-t border-cream/10 pt-4">
         <span className="label text-cream">{r.name}</span>
-        <span className="label text-cream/40">{r.when} · Google</span>
+        <span className="label text-right text-cream/40">{r.when} · Google{r.translated ? ' · traduzido' : ''}</span>
       </figcaption>
     </figure>
   )
