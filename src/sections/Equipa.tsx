@@ -18,12 +18,38 @@ export function Equipa() {
 
   const runway = useRef<HTMLDivElement>(null)
   const { reduced, mobile } = useMotion()
-  // a cena 3D só é carregada quando a passagem se aproxima e só desenha enquanto está à vista
-  const near = useInView(runway, '60% 0px')
+  // a cena 3D é criada com antecedência (em tempo livre) quando se aproxima da passagem e a tesoura
+  // ainda vai aparecer; se se chegar já depois do corte (ex.: pelo menu) não é criada. Só desenha à vista.
+  const inView = useInView(runway, '0px')
   const [want3D, setWant3D] = useState(false)
+  const [live, setLive] = useState(false)
   useEffect(() => {
-    if (near && !reduced) setWant3D(true)
-  }, [near, reduced])
+    if (reduced || want3D) return
+    const r = runway.current
+    if (!r) return
+    let idle = 0
+    const check = () => {
+      const b = r.getBoundingClientRect()
+      const approaching = b.top < window.innerHeight * 4 && b.bottom > window.innerHeight
+      if (approaching && scissorsState.progress < 0.85 && !idle) {
+        const ric = (window as unknown as { requestIdleCallback?: (f: () => void, o?: { timeout: number }) => number }).requestIdleCallback
+        idle = ric ? ric(() => setWant3D(true), { timeout: 800 }) : window.setTimeout(() => setWant3D(true), 200)
+      }
+    }
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    return () => window.removeEventListener('scroll', check)
+  }, [reduced, want3D])
+  useEffect(() => {
+    if (!want3D || !inView) return setLive(false)
+    let raf = 0
+    const tick = () => {
+      setLive(scissorsState.progress < 0.8)
+      raf = requestAnimationFrame(tick)
+    }
+    tick()
+    return () => cancelAnimationFrame(raf)
+  }, [want3D, inView])
 
   useScrollSetup(() => {
     const el = root.current
@@ -89,7 +115,7 @@ export function Equipa() {
             <div className="eq-flash absolute inset-0 opacity-0" style={{ background: 'radial-gradient(60% 18% at 50% 50%, rgba(255,226,176,.35), transparent 70%)' }} />
             {want3D && (
               <Suspense fallback={null}>
-                <ScissorsScene quality={mobile ? 'low' : 'high'} active={near} particles={mobile ? 160 : 600} />
+                <ScissorsScene quality={mobile ? 'low' : 'high'} active={live} particles={mobile ? 160 : 600} />
               </Suspense>
             )}
           </div>

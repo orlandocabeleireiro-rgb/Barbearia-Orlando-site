@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { lockScroll, scrollTo } from '../lib/lenis'
+import { jumpTo, lockScroll, scrollTo } from '../lib/lenis'
 import { SITE } from '../data/site'
 import { InstagramIcon } from './Icons'
 
@@ -20,8 +20,11 @@ export function Nav() {
   }, [open])
 
   const go = (href: string) => {
-    setOpen(false)
-    setTimeout(() => scrollTo(href), 450)
+    // com o menu aberto, salta logo para o destino (o menu tapa a página) e só depois fecha
+    if (open) {
+      jumpTo(href)
+      setOpen(false)
+    } else scrollTo(href)
   }
 
   return (

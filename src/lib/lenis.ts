@@ -35,3 +35,11 @@ export function lockScroll(lock: boolean) {
   if (lenis) lock ? lenis.stop() : lenis.start()
   document.documentElement.style.overflow = lock ? 'hidden' : ''
 }
+
+/** Salto instantâneo (usado pelo menu: a página muda por trás do menu, sem percorrer as animações pelo caminho). */
+export function jumpTo(target: string) {
+  const el = document.querySelector<HTMLElement>(target)
+  if (!el) return
+  if (lenis) lenis.scrollTo(el, { immediate: true, force: true })
+  else window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY)
+}
