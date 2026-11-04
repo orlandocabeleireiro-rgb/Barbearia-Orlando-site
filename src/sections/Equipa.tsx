@@ -114,9 +114,12 @@ export function Equipa() {
             <div className="eq-line absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 bg-[#ffe2b0] shadow-[0_0_18px_4px_rgba(232,176,108,.75)]" />
             <div className="eq-flash absolute inset-0 opacity-0" style={{ background: 'radial-gradient(60% 18% at 50% 50%, rgba(255,226,176,.35), transparent 70%)' }} />
             {want3D && (
-              <Suspense fallback={null}>
-                <ScissorsScene quality={mobile ? 'low' : 'high'} active={live} particles={mobile ? 160 : 600} />
-              </Suspense>
+              // quando deixa de desenhar, a camada é escondida (nunca fica um fotograma parado à frente)
+              <div className="absolute inset-0" style={{ visibility: live ? 'visible' : 'hidden' }}>
+                <Suspense fallback={null}>
+                  <ScissorsScene quality={mobile ? 'low' : 'high'} active={live} particles={mobile ? 160 : 600} />
+                </Suspense>
+              </div>
             )}
           </div>
         </div>
