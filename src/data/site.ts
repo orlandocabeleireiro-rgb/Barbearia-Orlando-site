@@ -68,7 +68,7 @@ export type Barber = {
 }
 
 export const TEAM: Barber[] = [
-  { name: 'Orlando' },
+  { name: 'Orlando', photo: 'assets/equipa/orlando.webp' },
   { name: 'Diogo', photo: 'assets/equipa/diogo.webp' },
   { name: 'Solange', photo: 'assets/equipa/solange.webp' },
   { name: 'Ariane', photo: 'assets/equipa/ariane.webp' },
