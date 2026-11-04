@@ -1,13 +1,19 @@
 import { SITE } from '../data/site'
 import { MaskLines } from '../components/MaskLines'
 import { InstagramIcon } from '../components/Icons'
+import posts from '../data/instagram.json'
 
-const TILES = [
+type Tile = { src: string; pos?: string; url?: string; alt?: string; video?: boolean }
+
+// fotos do espaço (enquanto não há publicações do Instagram)
+const FALLBACK: Tile[] = [
   { src: 'assets/espaco/montra.webp', pos: '50% 42%' },
   { src: 'assets/espaco/cadeira.webp', pos: '50% 58%' },
   { src: 'assets/espaco/ferramentas.webp', pos: '50% 45%' },
   { src: 'assets/espaco/polo.webp', pos: '70% 38%' },
 ]
+// últimas publicações, preenchidas automaticamente por scripts/fetch-instagram.mjs
+const TILES: Tile[] = (posts as Tile[]).length >= 4 ? (posts as Tile[]) : FALLBACK
 
 /** Faixa do Instagram: convite a seguir, com mosaico de imagens a ligar ao perfil. */
 export function Instagram() {
@@ -38,17 +44,17 @@ export function Instagram() {
       </div>
 
       <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-        {TILES.map(({ src, pos }, i) => (
+        {TILES.map(({ src, pos, url, alt }, i) => (
           <a
             key={src}
-            href={SITE.instagram}
+            href={url ?? SITE.instagram}
             target="_blank"
             rel="noopener"
             data-cursor="view"
-            aria-label={`Ver no Instagram (${i + 1})`}
+            aria-label={alt ? `Ver no Instagram: ${alt}` : `Ver no Instagram (${i + 1})`}
             className="group relative aspect-square overflow-hidden rounded-[18px] bg-navy"
           >
-            <img src={src} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className="photo-grade h-full w-full object-cover transition-[filter,transform] duration-700 group-hover:scale-110" />
+            <img src={src} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos ?? '50% 50%' }} className="photo-grade h-full w-full object-cover transition-[filter,transform] duration-700 group-hover:scale-110" />
             <span className="absolute inset-0 flex items-center justify-center bg-abyss/0 text-cream opacity-0 transition-all duration-500 group-hover:bg-abyss/50 group-hover:opacity-100">
               <InstagramIcon className="h-8 w-8" />
             </span>
