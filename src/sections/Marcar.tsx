@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useScrollSetup } from '../hooks/useScrollSetup'
 import { gsap } from '../lib/gsap'
 import { SITE } from '../data/site'
-import { BookButton } from '../components/MagneticButton'
+import { BookButton, WhatsAppButton } from '../components/MagneticButton'
 import { chars } from '../lib/split'
 import { PinIcon } from '../components/Icons'
 
@@ -84,12 +84,17 @@ export function Marcar() {
         </div>
         <div>
           <h3 className="label text-cream/50">Telemóvel · WhatsApp</h3>
-          <a href={SITE.phoneHref} className="mt-3 block font-display text-3xl italic text-cream hover:text-brass">
-            {SITE.phone}
-          </a>
-          <a href={SITE.whatsapp} target="_blank" rel="noopener" className="label mt-2 inline-block text-brass">
-            Escrever no WhatsApp ↗
-          </a>
+          <div className="mt-3 flex items-center justify-between gap-4 lg:flex-col lg:items-start">
+            <div>
+              <a href={SITE.phoneHref} className="block font-display text-3xl italic text-cream hover:text-brass">
+                {SITE.phone}
+              </a>
+              <a href={SITE.whatsapp} target="_blank" rel="noopener" className="label mt-2 inline-block text-brass">
+                Escrever no WhatsApp ↗
+              </a>
+            </div>
+            <WhatsAppButton href={SITE.whatsapp} />
+          </div>
         </div>
         <div>
           <h3 className="label text-cream/50">Instagram</h3>

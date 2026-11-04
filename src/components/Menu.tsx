@@ -17,7 +17,7 @@ export default function Menu({ open, go }: { open: boolean; go: (href: string) =
         >
           <ul className="space-y-1">
             {NAV.map((n, i) => (
-              <li key={n.href} className="mask">
+              <li key={n.href} className="mask text-[15vw] leading-[0.86] md:text-[9vw]" style={{ paddingBottom: '0.24em', marginBottom: '-0.24em' }}>
                 <motion.a
                   href={n.href}
                   onClick={(e) => (e.preventDefault(), go(n.href))}
