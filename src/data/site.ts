@@ -76,3 +76,24 @@ export const TEAM: Barber[] = [
 
 export const euro = (n: number) =>
   n.toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'
+
+export type Review = { name: string; when: string; text: string; sample?: boolean }
+
+/** Nota e avaliações do Google (copiadas tal e qual do Perfil da Empresa). */
+export const RATING = {
+  score: 4.8,
+  count: 321,
+  url: 'https://maps.app.goo.gl/RzZxhcLZCaLCqFgd9',
+  // link "pedir avaliações" do Perfil da Empresa (opcional)
+  write: '',
+}
+
+// EXEMPLOS só para pré-visualizar o aspeto — a substituir pelas avaliações verdadeiras
+export const REVIEWS: Review[] = [
+  { name: 'Exemplo A.', when: 'há 1 mês', text: 'Texto de exemplo de uma avaliação curta, para ver como fica o cartão.', sample: true },
+  { name: 'Exemplo B.', when: 'há 2 meses', text: 'Outro texto de exemplo, um pouco mais comprido, para ver como fica quando a avaliação ocupa mais linhas no cartão.', sample: true },
+  { name: 'Exemplo C.', when: 'há 3 meses', text: 'Exemplo de avaliação.', sample: true },
+  { name: 'Exemplo D.', when: 'há 4 meses', text: 'Mais um texto de exemplo para preencher a faixa de avaliações.', sample: true },
+  { name: 'Exemplo E.', when: 'há 5 meses', text: 'Texto de exemplo número cinco, só para pré-visualização.', sample: true },
+  { name: 'Exemplo F.', when: 'há 6 meses', text: 'Último exemplo.', sample: true },
+]
