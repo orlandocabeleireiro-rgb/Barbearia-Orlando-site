@@ -4,12 +4,13 @@ import { useMotion } from '../context/MotionContext'
 import { useInView } from '../hooks/useInView'
 import { heroState } from '../three/state'
 import { chars } from '../lib/split'
+import { useFitLines } from '../hooks/useFitLines'
 
 const HeroScene = lazy(() => import('../three/HeroScene'))
 
 function Letters({ text, className }: { text: string; className?: string }) {
   return (
-    <span className={`mask ${className ?? ''}`} aria-hidden>
+    <span className={`hero-line mask ${className ?? ''}`} aria-hidden>
       <span className="flex justify-center">
         {chars(text).map((c, i) => (
           <span key={i} className="hero-char inline-block will-change-transform">
@@ -24,6 +25,8 @@ function Letters({ text, className }: { text: string; className?: string }) {
 export function Hero() {
   const root = useRef<HTMLElement>(null)
   const stage = useRef<HTMLDivElement>(null)
+  const title = useRef<HTMLHeadingElement>(null)
+  useFitLines(title, '.hero-line', '.hero-char')
   const { reduced, mobile, ready } = useMotion()
   const visible = useInView(root, '100px')
   // telemóvel: mostra a imagem renderizada do poste (igual ao 3D) e só carrega
@@ -116,7 +119,7 @@ export function Hero() {
         )}
 
         <div className="pointer-events-none absolute inset-0 flex h-full flex-col items-center justify-end pb-[12svh] text-center md:justify-center md:pb-0">
-          <h1 className="hero-title display relative z-0 text-cream" aria-label="Barbearia Orlando">
+          <h1 ref={title} className="hero-title display relative z-0 w-full text-cream" aria-label="Barbearia Orlando">
             <Letters text="BARBEARIA" className="text-[16.5vw] md:text-[12.5vw]" />
             <Letters text="ORLANDO" className="-mt-[0.06em] text-[16.5vw] md:text-[12.5vw]" />
           </h1>

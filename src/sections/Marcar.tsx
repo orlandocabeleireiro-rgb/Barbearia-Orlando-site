@@ -5,11 +5,14 @@ import { SITE } from '../data/site'
 import { BookButton, WhatsAppButton } from '../components/MagneticButton'
 import { chars } from '../lib/split'
 import { PinIcon } from '../components/Icons'
+import { useFitLines } from '../hooks/useFitLines'
 
 const LINES = ['Senta-te', 'na cadeira.']
 
 export function Marcar() {
   const root = useRef<HTMLElement>(null)
+  const title = useRef<HTMLHeadingElement>(null)
+  useFitLines(title, '.mk-line', '.mk-char')
 
   useScrollSetup(() => {
     const el = root.current
@@ -45,9 +48,9 @@ export function Marcar() {
       <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(50% 40% at 70% 40%, rgba(168,50,45,.12), transparent 70%)' }} />
       <span className="label relative text-brass">Marcações</span>
       <div className="relative mt-6 grid items-center gap-12 md:grid-cols-[1fr_auto]">
-        <h2 className="display text-[19vw] text-cream md:text-[11vw]" aria-label="Senta-te na cadeira.">
+        <h2 ref={title} className="display text-[19vw] text-cream md:text-[11vw]" aria-label="Senta-te na cadeira.">
           {LINES.map((l, li) => (
-            <span key={li} className="block whitespace-nowrap" aria-hidden>
+            <span key={li} className="mk-line block whitespace-nowrap" aria-hidden>
               {chars(l).map((c, i) => (
                 <span key={i} className={`mk-char inline-block ${li === 1 && i >= 3 ? 'font-normal italic text-brass' : ''}`}>
                   {c === ' ' ? ' ' : c}
