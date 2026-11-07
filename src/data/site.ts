@@ -40,7 +40,7 @@ export const SERVICES: Service[] = [
     price: 10.5,
     note: 'Aparar, desenhar o contorno e acabar à navalha.',
     image: 'assets/servicos/barba.webp',
-    pos: '50% 55%',
+    pos: '72% 42%',
   },
   {
     name: 'Cabelo e barba',
