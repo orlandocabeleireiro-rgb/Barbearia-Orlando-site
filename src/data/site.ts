@@ -32,7 +32,7 @@ export const SERVICES: Service[] = [
     price: 15,
     note: 'Máquina e tesoura, com o melhor acabamento.',
     image: 'assets/servicos/cabelo.webp',
-    pos: '40% 60%',
+    pos: '50% 40%',
   },
   {
     name: 'Barba',
