@@ -5,6 +5,8 @@ import { SERVICES, SITE } from '../data/site'
 import { PriceCounter } from '../components/Counter'
 import { MaskLines } from '../components/MaskLines'
 
+const POR_EXTENSO = ['Zero', 'Um', 'Dois', 'Três', 'Quatro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove']
+
 /** Cartões empilhados: cada cartão fica preso e é tapado pelo seguinte, que encolhe o anterior. */
 export function Servicos() {
   const root = useRef<HTMLElement>(null)
@@ -38,7 +40,7 @@ export function Servicos() {
     <section id="servicos" ref={root} className="pad relative bg-abyss pb-[10vh] pt-[18vh]" aria-label="Serviços">
       <div className="mb-[8vh] flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <MaskLines as="h2" className="display text-[16vw] text-cream md:text-[9vw]" lines={['Serviços', <em className="font-normal italic text-brass">& preços</em>]} />
-        <p className="max-w-xs font-serif text-cream/70">Três serviços. Preço fixo, sem surpresas. Marcação online ou por telefone.</p>
+        <p className="max-w-xs font-serif text-cream/70">{POR_EXTENSO[SERVICES.length] ?? SERVICES.length} serviços. Preço fixo, sem surpresas. Marcação online ou por telefone.</p>
       </div>
 
       <ol>
@@ -70,7 +72,13 @@ export function Servicos() {
                 </div>
               </div>
               <div className="group relative min-h-[34svh] overflow-hidden md:min-h-0" data-cursor="view">
-                <img src={s.image} alt={`${s.name} na Barbearia Orlando`} loading="lazy" decoding="async" style={{ objectPosition: s.pos ?? '50% 50%' }} className="svc-img photo-grade absolute inset-0 h-full w-full object-cover" />
+                {s.image ? (
+                  <img src={s.image} alt={`${s.name} na Barbearia Orlando`} loading="lazy" decoding="async" style={{ objectPosition: s.pos ?? '50% 50%' }} className="svc-img photo-grade absolute inset-0 h-full w-full object-cover" />
+                ) : (
+                  <div className="svc-img absolute inset-0 flex items-center justify-center bg-abyss">
+                    <img src="assets/logo-720.webp" alt="" loading="lazy" decoding="async" className="w-[46%] max-w-[260px] opacity-80" />
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/70 to-transparent md:bg-gradient-to-r" />
               </div>
             </article>

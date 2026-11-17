@@ -6,6 +6,7 @@ export const SITE = {
   whatsapp: 'https://wa.me/351918871659',
   instagram: 'https://www.instagram.com/barbeariaorlando',
   instagramLabel: '@barbeariaorlando',
+  facebook: 'https://www.facebook.com/646983888767423',
   address: ['Rua Álvaro de Castelões, 222', '4200-039 Porto'],
   maps: 'https://maps.app.goo.gl/RzZxhcLZCaLCqFgd9',
   mapEmbed: 'https://www.google.com/maps?q=Barbearia+Orlando,+Rua+%C3%81lvaro+de+Castel%C3%B5es+222,+4200-039+Porto&z=16&output=embed',
@@ -21,7 +22,8 @@ export type Service = {
   minutes: number
   price: number
   note: string
-  image: string
+  /** foto do serviço; sem foto mostra o logótipo da barbearia */
+  image?: string
   pos?: string
 }
 
@@ -49,6 +51,12 @@ export const SERVICES: Service[] = [
     note: 'O serviço completo. Uma hora na cadeira.',
     image: 'assets/servicos/cabelo-e-barba.webp',
     pos: '55% 60%',
+  },
+  {
+    name: 'Corte de criança',
+    minutes: 30,
+    price: 13.5,
+    note: 'Para os mais novos, até aos 10 anos. Paciência e o mesmo cuidado.',
   },
 ]
 

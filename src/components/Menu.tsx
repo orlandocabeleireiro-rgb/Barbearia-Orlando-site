@@ -43,6 +43,7 @@ export default function Menu({ open, go }: { open: boolean; go: (href: string) =
             <a href={SITE.maps} target="_blank" rel="noopener">{SITE.address.join(' · ')}</a>
             <a href={SITE.phoneHref}>{SITE.phone}</a>
             <a href={SITE.instagram} target="_blank" rel="noopener">{SITE.instagramLabel}</a>
+            <a href={SITE.facebook} target="_blank" rel="noopener">Facebook</a>
           </motion.div>
         </motion.nav>
       )}

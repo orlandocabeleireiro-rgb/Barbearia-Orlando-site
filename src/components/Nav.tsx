@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { jumpTo, lockScroll, scrollTo } from '../lib/lenis'
 import { SITE } from '../data/site'
-import { InstagramIcon } from './Icons'
+import { FacebookIcon, InstagramIcon } from './Icons'
 
 // o menu (framer-motion) só é carregado quando é preciso
 const loadMenu = () => import('./Menu')
@@ -37,6 +37,9 @@ export function Nav() {
         <div className="flex items-center gap-6">
         <a href={SITE.instagram} target="_blank" rel="noopener" aria-label="Instagram da Barbearia Orlando" className="text-cream transition-colors hover:text-brass">
           <InstagramIcon className="h-[22px] w-[22px]" />
+        </a>
+        <a href={SITE.facebook} target="_blank" rel="noopener" aria-label="Facebook da Barbearia Orlando" className="text-cream transition-colors hover:text-brass">
+          <FacebookIcon className="h-[22px] w-[22px]" />
         </a>
         <button
           onClick={() => setOpen((o) => !o)}
